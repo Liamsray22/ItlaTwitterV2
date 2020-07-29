@@ -14,7 +14,9 @@ namespace LimboLand.Controllers
 
         }
 
+        //Login***********************************************
 
+        #region Login
         public IActionResult Index()
         {
             //try
@@ -79,6 +81,10 @@ namespace LimboLand.Controllers
 
             return View(loginViewModel);
         }
+        #endregion
+
+        //End Login**************************************************
+
 
         //Registro***********************************************
         #region registro
@@ -110,6 +116,19 @@ namespace LimboLand.Controllers
         #endregion
 
         //End Registro**************************************************
+
+
+
+        //Cerrar Sesion**********************************************
+        #region CerrarSesion
+        public IActionResult CerrarSesion()
+        {
+            _usuarioRepo.Cerrar();
+            return RedirectToAction("Index");
+        }
+        #endregion
+
+        //End Cerrar Sesion**********************************************
 
 
     }

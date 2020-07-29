@@ -42,7 +42,6 @@ namespace Repository.Repository
         public async Task<PublicacionesViewModel> TraerPubs(int id)
         {
             PublicacionesViewModel pvm = new PublicacionesViewModel();
-            //pvm.publicaciones = 
             var listapubs = await _context.Publicaciones.Where(x => x.IdUsuario == id).ToListAsync();
             List<PublicacionesViewModel> list = new List<PublicacionesViewModel>();
             //List<ComentariosViewModel> listcomentPub = new List<ComentariosViewModel>();
@@ -61,16 +60,27 @@ namespace Repository.Repository
             pvm.publicaciones = list;
             //pvm.comentarios = await _comentariosRepo.TraerComments(id);
             pvm.IdUsuario = id;
+            pvm.Usuario = await _usuarioRepo.GetNombreUsuarioById(id);
             var user = await _usuarioRepo.GetByIdAsync(id);
-            var image = await _context.Imagenes.FirstOrDefaultAsync(i=>i.IdImagen == user.IdImagen);
-            pvm.Imagen = image.Ruta; 
-            //foreach (var img in pvm.publicaciones) {
-            //    pvm.Imagen.Add(_context.Imagenes.FirstOrDefault(i => i.IdImagen == img.IdImagen).Ruta;
-            //}
+            try
+            {
+                var image = await _context.Imagenes.FirstOrDefaultAsync(i => i.IdImagen == user.IdImagen);
+                pvm.Imagen = image.Ruta;
+            }
+            catch { }
             return pvm;
             
         }
 
+        public async Task<List<PublicacionesViewModel>> TraerPubsAmigos(int id)
+        {
+            var listIdsFriends = _context.Amigos.Where(a => a.IdUsuario == id).Select(s=>s.IdAmigo).ToList();
+            List<PublicacionesViewModel> pvmfriends = new List<PublicacionesViewModel>();
+            foreach (int idi in listIdsFriends) {
+                pvmfriends.Add(await TraerPubs(idi));
+            }
+            return pvmfriends;
+        }
         public async Task<bool> CrearPubs(PublicacionesViewModel pub)
         {
 

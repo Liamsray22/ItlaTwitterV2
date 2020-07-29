@@ -1,0 +1,160 @@
+﻿
+@model List<DataBase.ViewModels.PublicacionesViewModel>
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+
+}
+
+    @foreach(var model in Model) {
+
+@if (Model.Count() == 0)
+{
+    <body style="background-color:white;">
+        <h1>No hay publicaciones para mostrar</h1>
+        <h5>o... talves no tengas amigos</h5>
+        <center><img src="~/images/pubs.gif" /></center>
+    </body>
+}
+else
+{
+    foreach (var Persona in model.publicaciones)
+    {
+
+        <div class="card gedf-card">
+            <div class="card-header">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex justify-content-between align-items-center">
+
+                        <div class="ml-2">
+                            <div class="h3 m-0">@Html.DisplayFor(ModelItem => Persona.Usuario)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="text-muted h5 mb-2"> <i class="fa fa-clock-o"></i>@Html.DisplayFor(ModelItem => Persona.Fecha)</div>
+                <a class="card-link" href="#">
+                    <h3 class="card-title">@Html.DisplayFor(ModelItem => Persona.Publicacion)</h3>
+                </a>
+
+            </div>
+            @if (Persona.Imagen != null)
+            {
+                <center>
+                    <div class="card-body">
+                        <a class="card-link" href="#">
+                            <img src="@Persona.Imagen" width="50%" height="500px" />
+                        </a>
+
+                    </div>
+                </center>
+            }
+            <a class="card-link" href="" data-toggle="collapse" data-target="#coment-@(Persona.IdPublicacion)"><i class="fa fa-comment"></i> Comentar</a>
+
+            <div class="card-footer">
+                <div class="collapse" id="coment-@(Persona.IdPublicacion)">
+                    <form asp-action="Comentar" method="post">
+                        <input type="text" class="form-control" name="Comentario" required />
+                        <input value="@Persona.IdPublicacion" class="collapse" name="IdPublicacion" />
+                        <input value="@Persona.IdUsuario" class="collapse" name="IdUsuario" />
+
+
+                        <input type="submit" class="btn btn-primary" value="Comentar" />
+
+                    </form>
+                </div>
+            </div>
+
+            @foreach (var comentario in Persona.comentarios)
+            {
+                if (comentario.IdPublicacion == Persona.IdPublicacion)
+                {
+                    <div class="comentarios" style="background-color: rgba(0,0,0,.03); border-bottom:2px solid; border-color:#e9ebee;">
+                        <div class="user-post-info">
+                            <h4><b>@Html.DisplayFor(ModelItem => comentario.Usuario)</b></h4>
+                            <b><i class="fa fa-comments"></i>Comento:</b>
+                            @Html.DisplayFor(ModelItem => comentario.Comentario)
+                            <br>
+
+                            <p></p>
+                        </div>
+                    </div>
+                    <a class="card-link" href="" data-toggle="collapse" data-target="#coment-@(comentario.IdComentario)"><i class="fa fa-reply"></i> Responder</a>
+                    <div class="card-footer">
+                        <div class="collapse" id="coment-@(comentario.IdComentario)">
+                            <form asp-action="Responder" method="post">
+                                <input type="text" class="form-control" name="Comentario" required />
+                                <input value="@comentario.IdComentario" class="collapse" name="IdComentarioPadre" />
+                                <input value="@Persona.IdUsuario" class="collapse" name="IdUsuario" />
+
+
+                                <input type="submit" class="btn btn-primary" value="Responder" />
+
+                            </form>
+                        </div>
+                    </div>
+
+
+                    @foreach (var replys in comentario.comentarios2)
+                    {
+                        <div class="comentarios" style="background-color: rgba(0,0,0,.03);
+                    border-bottom:2px solid; border-color:#e9ebee;">
+                            <div class="user-post-info">
+                                <h4 style=" margin-left:30px;"><b>@Html.DisplayFor(ModelItem => replys.Usuario)</b></h4>
+                                <span style=" margin-left:30px;">
+
+                                    <b><i class="fa fa-share"></i>Respondio:</b>
+                                    @Html.DisplayFor(ModelItem => replys.Comentario)
+                                </span>
+                                <br>
+
+                                <p></p>
+                            </div>
+                        </div>
+
+                    }
+
+
+                }
+            }
+
+        </div>
+    }
+}
+}
+
+
+
+
+<style>
+    body {
+        background-color: #eeeeee;
+    }
+
+    .h7 {
+        font-size: 0.8rem;
+    }
+
+    .gedf-wrapper {
+        margin-top: 0.97rem;
+    }
+
+    @@media (min-width: 992px) {
+        .gedf-main {
+            padding-left: 4rem;
+            padding-right: 4rem;
+        }
+
+        .gedf-card {
+            margin-bottom: 2.77rem;
+        }
+    }
+
+    /**Reset Bootstrap*/
+    .dropdown-toggle::after {
+        content: none;
+        display: none;
+    }
+</style>

@@ -31,9 +31,9 @@
 <body>
     <nav class="navbar navbar-dark bg-dark">
         <a asp-area="" asp-controller="HomePage" asp-action="Index" class="navbar-brand">Limbo</a>
-        <a asp-area="" asp-controller="Social" asp-action="TraerAmigos">Publicaciones de Amigos</a>
-        <a asp-area="" asp-controller="Social" asp-action="ListaAmigos">Mis Amigos</a>
-        <a asp-area="" asp-controller="Social" asp-action="CerrarSesion">Cerrar Sesion</a>
+        <a asp-area="" asp-controller="HomeAmigos" asp-action="Index">Publicaciones de Amigos</a>
+        <a asp-area="" asp-controller="HomePage" asp-action="ListaAmigos">Mis Amigos</a>
+        <a asp-area="" asp-controller="Account" asp-action="CerrarSesion">Cerrar Sesion</a>
 
         <form asp-action="Buscar" asp-controller="Social">
             <div class="input-group">

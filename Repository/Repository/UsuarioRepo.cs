@@ -145,5 +145,10 @@ namespace Repository.Repository
             var user = await _context.Usuarios.FirstOrDefaultAsync(x => x.IdUsuarios == id);
             return user.Usuario;
         }
+
+        public void Cerrar()
+        {
+            _signInManager.SignOutAsync();
+        }
     }
 }
