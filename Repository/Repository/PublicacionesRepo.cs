@@ -1,0 +1,118 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using AutoMapper;
+using DataBase;
+using DataBase.Models;
+using DataBase.ViewModels;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+
+namespace Repository.Repository
+{
+    public class PublicacionesRepo : RepositoryBase<Publicaciones, LIMBODBContext>
+    {
+        private readonly LIMBODBContext _context;
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UsuarioRepo _usuarioRepo;
+        private readonly ComentariosRepo _comentariosRepo;
+        private readonly IMapper _mapper;
+        private readonly IHostingEnvironment Hotin;
+
+
+        public PublicacionesRepo(LIMBODBContext context, UserManager<IdentityUser> userManager,
+                            SignInManager<IdentityUser> signInManager, IMapper mapper, 
+                            IHostingEnvironment Hotin, UsuarioRepo usuarioRepo, ComentariosRepo comentariosRepo) : base(context)
+        {
+            _context = context;
+            _userManager = userManager;
+            _signInManager = signInManager;
+            _mapper = mapper;
+            this.Hotin = Hotin;
+            _usuarioRepo = usuarioRepo;
+            _comentariosRepo = comentariosRepo;
+            //TarjetadeUsuario = new TarjetadeUsuario(context);
+        }
+
+        public async Task<PublicacionesViewModel> TraerPubs(int id)
+        {
+            PublicacionesViewModel pvm = new PublicacionesViewModel();
+            //pvm.publicaciones = 
+            var listapubs = await _context.Publicaciones.Where(x => x.IdUsuario == id).ToListAsync();
+            List<PublicacionesViewModel> list = new List<PublicacionesViewModel>();
+            //List<ComentariosViewModel> listcomentPub = new List<ComentariosViewModel>();
+            foreach (var p in listapubs)
+            {
+                var pv = _mapper.Map<PublicacionesViewModel>(p);
+                if (p.IdImagen != null)
+                {
+                    var img = await _context.Imagenes.FirstOrDefaultAsync(k => k.IdImagen == p.IdImagen);
+                    pv.Imagen = img.Ruta;
+                }
+                pv.comentarios = await _comentariosRepo.TraerComments(p.IdPublicacion);
+                list.Add(pv);
+
+            }
+            pvm.publicaciones = list;
+            //pvm.comentarios = await _comentariosRepo.TraerComments(id);
+            pvm.IdUsuario = id;
+            var user = await _usuarioRepo.GetByIdAsync(id);
+            var image = await _context.Imagenes.FirstOrDefaultAsync(i=>i.IdImagen == user.IdImagen);
+            pvm.Imagen = image.Ruta; 
+            //foreach (var img in pvm.publicaciones) {
+            //    pvm.Imagen.Add(_context.Imagenes.FirstOrDefault(i => i.IdImagen == img.IdImagen).Ruta;
+            //}
+            return pvm;
+            
+        }
+
+        public async Task<bool> CrearPubs(PublicacionesViewModel pub)
+        {
+
+            Publicaciones publicacion = new Publicaciones();
+            publicacion.IdUsuario = pub.IdUsuario;
+            publicacion.Publicacion = pub.Publicacion;
+
+            string FileName = null;
+            
+            if (pub.FotoPub != null)
+            {
+                try
+                {
+                    string minipub = publicacion.Publicacion.Substring(0, 5);
+
+                    Random r = new Random();
+                    int codigo = r.Next(10000000, 99999999);
+                    string Subir = Path.Combine(Hotin.WebRootPath, "images\\fotoPub");
+                    FileName = minipub+ codigo + ".png";
+                    string FilePath = Path.Combine(Subir, FileName);
+
+                    pub.FotoPub.CopyTo(new FileStream(FilePath, FileMode.Create));
+                    Imagenes img = new Imagenes();
+                    img.Nombre = FileName;
+                    img.Ruta = "images\\fotoPub\\" + FileName + "";
+                    await _context.Imagenes.AddAsync(img);
+                    _context.SaveChanges();
+
+                    var image = await _context.Imagenes.FirstOrDefaultAsync(d => d.Nombre.Contains(minipub + codigo));
+
+                    publicacion.IdImagen = image.IdImagen;
+                   
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+
+            await AddAsync(publicacion);
+            //publicacion.IdImagen = pub
+            return false;
+        } 
+    }
+}

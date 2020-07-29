@@ -1,0 +1,14 @@
+C:\Users\Liam\source\repos\LimboLand\AutoMap\bin\Debug\netcoreapp2.1\AutoMap.deps.json
+C:\Users\Liam\source\repos\LimboLand\AutoMap\bin\Debug\netcoreapp2.1\AutoMap.dll
+C:\Users\Liam\source\repos\LimboLand\AutoMap\obj\Debug\netcoreapp2.1\AutoMap.csproj.CoreCompileInputs.cache
+C:\Users\Liam\source\repos\LimboLand\AutoMap\obj\Debug\netcoreapp2.1\AutoMap.AssemblyInfoInputs.cache
+C:\Users\Liam\source\repos\LimboLand\AutoMap\obj\Debug\netcoreapp2.1\AutoMap.AssemblyInfo.cs
+C:\Users\Liam\source\repos\LimboLand\AutoMap\obj\Debug\netcoreapp2.1\AutoMap.csprojAssemblyReference.cache
+C:\Users\Liam\source\repos\LimboLand\AutoMap\bin\Debug\netcoreapp2.1\AutoMap.pdb
+C:\Users\Liam\source\repos\LimboLand\AutoMap\obj\Debug\netcoreapp2.1\AutoMap.dll
+C:\Users\Liam\source\repos\LimboLand\AutoMap\obj\Debug\netcoreapp2.1\AutoMap.pdb
+C:\Users\Liam\source\repos\LimboLand\AutoMap\bin\Debug\netcoreapp2.1\AutoMap.runtimeconfig.json
+C:\Users\Liam\source\repos\LimboLand\AutoMap\bin\Debug\netcoreapp2.1\AutoMap.runtimeconfig.dev.json
+C:\Users\Liam\source\repos\LimboLand\AutoMap\bin\Debug\netcoreapp2.1\DataBase.dll
+C:\Users\Liam\source\repos\LimboLand\AutoMap\bin\Debug\netcoreapp2.1\DataBase.pdb
+C:\Users\Liam\source\repos\LimboLand\AutoMap\obj\Debug\netcoreapp2.1\AutoMap.csproj.CopyComplete

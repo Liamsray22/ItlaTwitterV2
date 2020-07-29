@@ -1,0 +1,86 @@
+﻿@model DataBase.ViewModels.LoginViewModel
+@{
+    Layout = null;
+}
+
+
+<head>
+    <link rel="stylesheet" href="~/css/Formulario.css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <!-- JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+</head>
+
+
+<body style=" background: rgb(255,255,255); background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(173,173,175,1) 45%, rgba(24,24,24,1) 100%);">
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <center><h3 class="text-info">LOGIN</h3></center>
+            <form asp-action="Index" class="form-group">
+                <div class="form-group">
+                    <input asp-for="Usuario" class="fadeIn second" placeholder="Usuario" />
+                    <div>
+                        @Html.ValidationMessageFor(d => d.Usuario, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input asp-for="Clave" class="fadeIn third" type="password" placeholder="Clave" />
+                    <div>
+                        @Html.ValidationMessageFor(d => d.Clave, "", new { @class = "text-danger" })
+                    </div>
+
+                </div>
+                <div>
+                    <input class="fadeIn fourth" type="submit" value="Enviar" />
+                </div>
+            </form>
+            <a asp-action="Registro" class="underlineHover"> No tienes una cuenta? Registrate!</a>
+
+            <div id="formFooter">
+                <a class="underlineHover" href="#" data-target="#loginModal" data-toggle="modal">Olvidó su contraseña?</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+<div class="modal fade" tabindex="-1" id="loginModal"
+     data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+
+
+                <h4 class="modal-title">Recuperar contraseña</h4>
+            </div>
+            <div class="modal-body">
+                <form asp-action="RecuperarPass">
+                    <div class="form-group">
+                        <label for="inputUserName">Usuario</label>
+                        <input class="form-control" placeholder="Usuario"
+                               type="text" id="inputUserName" name="User" required />
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger"
+                        data-dismiss="modal">
+                    Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+

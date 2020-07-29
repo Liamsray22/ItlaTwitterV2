@@ -1,0 +1,11 @@
+C:\Users\Liam\source\repos\LimboLand\DataBase\bin\Debug\netcoreapp2.1\DataBase.deps.json
+C:\Users\Liam\source\repos\LimboLand\DataBase\bin\Debug\netcoreapp2.1\DataBase.dll
+C:\Users\Liam\source\repos\LimboLand\DataBase\bin\Debug\netcoreapp2.1\DataBase.pdb
+C:\Users\Liam\source\repos\LimboLand\DataBase\obj\Debug\netcoreapp2.1\DataBase.csproj.CoreCompileInputs.cache
+C:\Users\Liam\source\repos\LimboLand\DataBase\obj\Debug\netcoreapp2.1\DataBase.AssemblyInfoInputs.cache
+C:\Users\Liam\source\repos\LimboLand\DataBase\obj\Debug\netcoreapp2.1\DataBase.AssemblyInfo.cs
+C:\Users\Liam\source\repos\LimboLand\DataBase\obj\Debug\netcoreapp2.1\DataBase.dll
+C:\Users\Liam\source\repos\LimboLand\DataBase\obj\Debug\netcoreapp2.1\DataBase.pdb
+C:\Users\Liam\source\repos\LimboLand\DataBase\bin\Debug\netcoreapp2.1\DataBase.runtimeconfig.json
+C:\Users\Liam\source\repos\LimboLand\DataBase\bin\Debug\netcoreapp2.1\DataBase.runtimeconfig.dev.json
+C:\Users\Liam\source\repos\LimboLand\DataBase\obj\Debug\netcoreapp2.1\DataBase.csprojAssemblyReference.cache

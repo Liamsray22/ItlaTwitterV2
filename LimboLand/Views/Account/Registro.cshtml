@@ -1,0 +1,94 @@
+﻿@model DataBase.ViewModels.RegistroViewModel
+@{
+    Layout = null;
+}
+<head>
+    <link rel="stylesheet" href="~/css/Formulario.css" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+
+</head>
+<body style=" background: rgb(255,255,255); background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(173,173,175,1) 45%, rgba(24,24,24,1) 100%);">
+
+
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <center><h2 class="text-info">REGISTRO</h2></center>
+            <a asp-action="Index" class="underlineHover"> Ya tengo una cuenta</a>
+
+
+            <form asp-action="Registro" enctype="multipart/form-data">
+                <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+                <div class="form-group">
+                    <input asp-for="Nombre" placeholder="Nombre" />
+                    <div>
+                        @Html.ValidationMessageFor(d => d.Nombre, "", new { @class = "text-danger" })
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <input asp-for="Apellido" class="form-control" placeholder="Apellido" />
+                    <div>
+                        @Html.ValidationMessageFor(d => d.Apellido, "", new { @class = "text-danger" })
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <input asp-for="Correo" placeholder="Correo" />
+                    <div>
+                        @Html.ValidationMessageFor(d => d.Correo, "", new { @class = "text-danger" })
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <input asp-for="Usuario" placeholder="Usuario" />
+                    <div>
+                        @Html.ValidationMessageFor(d => d.Usuario, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input asp-for="Clave" type="password" placeholder="Clave" />
+                    <div>
+                        @Html.ValidationMessageFor(d => d.Clave, "", new { @class = "text-danger" })
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <input asp-for="Clave2" type="password" placeholder="Repetir Clave" />
+                    <div>
+                        @Html.ValidationMessageFor(d => d.Clave2, "", new { @class = "text-danger" })
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <input asp-for="Telefono" placeholder="Numero de Telefono (use guiones -)" />
+                    <div>
+                        @Html.ValidationMessageFor(d => d.Telefono, "", new { @class = "text-danger" })
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <input asp-for="Foto" placeholder="Foto de Perfil" accept="image/*"/>
+                    <div>
+                        @Html.ValidationMessageFor(d => d.Foto, "", new { @class = "text-danger" })
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+                    <input type="submit" value="Registrar" class="btn btn-success" />
+                </div>
+            </form>
+
+
+        </div>
+
+    </div>
+
+</body>
