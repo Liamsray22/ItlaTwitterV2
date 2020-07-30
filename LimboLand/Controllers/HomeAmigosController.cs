@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Repository.Repository;
 
 namespace LimboLand.Controllers
 {
+    [Authorize]
     public class HomeAmigosController : Controller
     {
         private readonly UsuarioRepo _usuarioRepo;

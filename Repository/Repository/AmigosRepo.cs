@@ -14,71 +14,77 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Repository.Repository
 {
-    public class ComentariosRepo : RepositoryBase<Comentarios, LIMBODBContext>
+    public class AmigosRepo : RepositoryBase<Amigos, LIMBODBContext>
     {
         private readonly LIMBODBContext _context;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UsuarioRepo _usuarioRepo;
         private readonly IMapper _mapper;
-        private readonly IHostingEnvironment Hotin;
 
 
-        public ComentariosRepo(LIMBODBContext context, UserManager<IdentityUser> userManager,
-                            SignInManager<IdentityUser> signInManager, IMapper mapper, 
-                            IHostingEnvironment Hotin, UsuarioRepo usuarioRepo) : base(context)
+        public AmigosRepo(LIMBODBContext context, UserManager<IdentityUser> userManager,
+                            SignInManager<IdentityUser> signInManager, IMapper mapper,
+                            UsuarioRepo usuarioRepo) : base(context)
         {
             _context = context;
             _userManager = userManager;
             _signInManager = signInManager;
             _mapper = mapper;
-            this.Hotin = Hotin;
             _usuarioRepo = usuarioRepo;
-            //TarjetadeUsuario = new TarjetadeUsuario(context);
         }
 
-        public async Task<List<ComentariosViewModel>> TraerComments(int id)
+        
+
+        public async Task<List<ListaAmigosViewModel>> TraerListaAmigos (int id)
         {
-            var comentarios = await _context.Comentarios.Where(x=>x.IdPublicacion == id).ToListAsync();
-            List<ComentariosViewModel> listcvm = new List<ComentariosViewModel>();
-            foreach (var com in comentarios)
+            var listIdsAmigos = _context.Amigos.Where(l => l.IdUsuario == id).Select(s => s.IdAmigo).ToList();
+            List<ListaAmigosViewModel> listaAmigos = new List<ListaAmigosViewModel>();
+            foreach(int i in listIdsAmigos)
             {
-                var coment = _mapper.Map<ComentariosViewModel>(com);
-                coment.Usuario = await _usuarioRepo.GetNombreUsuarioById(coment.IdUsuario);
-                var replysIds = _context.Comentarios2.Where(c => c.IdComentarioPadre == coment.IdComentario).
-                    Select(s=>s.IdComentarioHijo).ToList();
-                List<ComentariosViewModel> comen2 = new List<ComentariosViewModel>();
-                foreach (int ide in replysIds)
-                {
-                    var Comentariohijo = await GetByIdAsync(ide);
-                    var comentarito = _mapper.Map<ComentariosViewModel>(Comentariohijo);
-                    comentarito.Usuario = await _usuarioRepo.GetNombreUsuarioById(Comentariohijo.IdUsuario);
-                    comen2.Add(comentarito);
-                }
-                coment.comentarios2 = comen2;
-                listcvm.Add(coment);
+                var user = await _usuarioRepo.GetByIdAsync(i);
+                var amigo = _mapper.Map<ListaAmigosViewModel>(user);
+                listaAmigos.Add(amigo);
             }
-            return listcvm;
-            
+            return listaAmigos;
         }
 
-        public async Task CrearComent(ComentariosViewModel cvm)
+        public async Task<List<ListaAmigosViewModel>> BuscarPersonas(string user)
         {
-            var comentario = _mapper.Map<Comentarios>(cvm);
-            await AddAsync(comentario);
+            var personas = await _context.Usuarios.Where(w=>w.Usuario.Contains(user)).ToListAsync();
+            List<ListaAmigosViewModel> listaAmigos = new List<ListaAmigosViewModel>();
+            foreach (var u in personas)
+            {
+                var amigo = _mapper.Map<ListaAmigosViewModel>(u);
+                listaAmigos.Add(amigo);
+            }
+
+            return listaAmigos;
         }
 
-        public async Task CrearRespuesta(RespuestaViewModel res)
+        public async Task AgregarAmigos(int IdUsuario, int IdAmigo)
         {
-            var comentario = _mapper.Map<Comentarios>(res);
-            await AddAsync(comentario);
-            Comentarios2 cm2 = new Comentarios2();
-            cm2.IdComentarioHijo = comentario.IdComentario;
-            cm2.IdComentarioPadre = res.IdComentarioPadre;
-            await _context.Comentarios2.AddAsync(cm2);
-            await _context.SaveChangesAsync();
+            Amigos ad = new Amigos();
+            ad.IdUsuario = IdUsuario;
+            ad.IdAmigo = IdAmigo;
+            await AddAsync(ad);
+            ad.IdUsuario = IdAmigo;
+            ad.IdAmigo = IdUsuario;
+            await AddAsync(ad);
+
         }
 
+        public async Task BorrarAmigos(int IdUsuario, int IdAmigo)
+        {
+            Amigos ad = new Amigos();
+            ad.IdUsuario = IdUsuario;
+            ad.IdAmigo = IdAmigo;
+            await DeleteEntity(ad);
+            ad.IdUsuario = IdAmigo;
+            ad.IdAmigo = IdUsuario;
+            await DeleteEntity(ad);
+
+        }
 
     }
 }

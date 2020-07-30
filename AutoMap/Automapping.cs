@@ -10,9 +10,10 @@ namespace AutoMap
 {
     public class Automapping : Profile
     {
-        public Automapping() {
+        public Automapping()
+        {
             MapearRegistro();
-            MapearLogin();
+            MapearAmigos();
             MapearHome();
             MapearPublicaciones();
             MapearComentarios();
@@ -27,16 +28,24 @@ namespace AutoMap
             ForMember(dest => dest.IdComentarioPadre, opt => opt.Ignore());
         }
 
-        private void MapearRegistro () {
+        private void MapearRegistro()
+        {
             CreateMap<RegistroViewModel, Usuarios>().ReverseMap().
-            ForMember(dest=>dest.Foto, opt => opt.Ignore());
+            ForMember(dest => dest.Foto, opt => opt.Ignore());
 
         }
 
-        private void MapearLogin()
+        private void MapearAmigos()
         {
-            //CreateMap<LoginViewModel, Usuarios>().ReverseMap();
-            //.ReverseMap()ForMember(dest=>dest.Campo, opt => opt.Ignore());
+            CreateMap<Usuarios, ListaAmigosViewModel>().ReverseMap()
+            .ForMember(dest => dest.Telefono, opt => opt.Ignore())
+            .ForMember(dest => dest.Correo, opt => opt.Ignore())
+            .ForMember(dest => dest.Activo, opt => opt.Ignore())
+            .ForMember(dest => dest.Clave, opt => opt.Ignore())
+            .ForMember(dest => dest.AmigosIdAmigoNavigation, opt => opt.Ignore())
+            .ForMember(dest => dest.AmigosIdUsuarioNavigation, opt => opt.Ignore());
+
+
 
         }
 
@@ -47,10 +56,10 @@ namespace AutoMap
 
         }
 
-       
+
         private void MapearPublicaciones()
         {
-            CreateMap<PublicacionesViewModel,Publicaciones>().ReverseMap()
+            CreateMap<PublicacionesViewModel, Publicaciones>().ReverseMap()
             .ForMember(dest => dest.FotoPub, opt => opt.Ignore())
             .ForMember(dest => dest.Usuario, opt => opt.Ignore())
             .ForMember(dest => dest.publicaciones, opt => opt.Ignore())
@@ -61,13 +70,13 @@ namespace AutoMap
 
         private void MapearComentarios()
         {
-            CreateMap<ComentariosViewModel,Comentarios >().ReverseMap()
+            CreateMap<ComentariosViewModel, Comentarios>().ReverseMap()
             .ForMember(dest => dest.Manda, opt => opt.Ignore())
-            .ForMember(dest=>dest.Usuario, opt => opt.Ignore())
+            .ForMember(dest => dest.Usuario, opt => opt.Ignore())
             .ForMember(dest => dest.comentarios2, opt => opt.Ignore());
 
         }
-         
+
 
     }
 }

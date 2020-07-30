@@ -66,6 +66,8 @@ namespace LimboLand
             services.AddScoped<UsuarioRepo>();
             services.AddScoped<PublicacionesRepo>();
             services.AddScoped<ComentariosRepo>();
+            services.AddScoped<AmigosRepo>();
+
 
 
 

@@ -1,0 +1,89 @@
+﻿@model IEnumerable<DataBase.ViewModels.ListaAmigosViewModel>
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<style>.project-tab {
+    padding: 10%;
+    margin-top: -8%;
+}
+.project-tab #tabs{
+    background: #007b5e;
+    color: #eee;
+}
+.project-tab #tabs h6.section-title{
+    color: #eee;
+}
+.project-tab #tabs .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: #0062cc;
+    background-color: transparent;
+    border-color: transparent transparent #f3f3f3;
+    border-bottom: 3px solid !important;
+    font-size: 16px;
+    font-weight: bold;
+}
+.project-tab .nav-link {
+    border: 1px solid transparent;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+    color: #0062cc;
+    font-size: 16px;
+    font-weight: 600;
+}
+.project-tab .nav-link:hover {
+    border: none;
+}
+.project-tab thead{
+    background: #f3f3f3;
+    color: #333;
+}
+.project-tab a{
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+}</style>
+@if (Model.Count() == 0) {
+    <h1>No se encontraron resultados</h1>
+
+    <img src="~/images/result.gif"/>
+
+} else {
+<div class="tab-pane" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+    <table class="table" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Usuario</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var Persona in Model)
+            {
+                <tr>
+                    <td><h1>@Html.DisplayFor(ModelItem => Persona.Usuario)</h1></td>
+                    <td>@Html.DisplayFor(ModelItem => Persona.Nombre)</td>
+                    <td>@Html.DisplayFor(ModelItem => Persona.Apellido)</td>
+                    <td>
+                        <form asp-action="Agregar">
+                            <input style="display:none;" type="number" name="IdAmigo" value="@Persona.IdUsuarios" />
+                            <input type="submit" value="Agregar" class="btn btn-success" />
+                        </form>
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+        </div>
+
+}
+
+        
+
+
+
+
+
