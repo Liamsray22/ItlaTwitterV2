@@ -49,9 +49,9 @@ namespace LimboLand.Controllers
             return RedirectToAction("ListaAmigos");
         }
 
-        public async Task<IActionResult> EliminarAmigos(int IdAmigo)
+        public async Task<IActionResult> EliminarAmigos(int id)
         {
-            await _amigosRepo.BorrarAmigos(await IdUser(), IdAmigo);
+            await _amigosRepo.BorrarAmigos(await IdUser(), id);
             return RedirectToAction("ListaAmigos");
         }
 

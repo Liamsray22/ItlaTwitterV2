@@ -80,9 +80,11 @@ namespace Repository.Repository
             ad.IdUsuario = IdUsuario;
             ad.IdAmigo = IdAmigo;
             await DeleteEntity(ad);
-            ad.IdUsuario = IdAmigo;
-            ad.IdAmigo = IdUsuario;
-            await DeleteEntity(ad);
+
+            Amigos ad2 = new Amigos();
+            ad2.IdUsuario = IdAmigo;
+            ad2.IdAmigo = IdUsuario;
+            await DeleteEntity(ad2);
 
         }
 
