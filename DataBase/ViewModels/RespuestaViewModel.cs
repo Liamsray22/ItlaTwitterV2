@@ -10,5 +10,7 @@ namespace DataBase.ViewModels
         public int IdComentarioPadre { get; set; }
         public string Comentario { get; set; }
         public int? IdUsuario { get; set; }
+        public int Manda { get; set; }
+
     }
 }

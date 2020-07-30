@@ -23,6 +23,7 @@ namespace AutoMap
         private void MapearRespuesta()
         {
             CreateMap<RespuestaViewModel, Comentarios>().ReverseMap().
+            ForMember(dest => dest.Manda, opt => opt.Ignore()).
             ForMember(dest => dest.IdComentarioPadre, opt => opt.Ignore());
         }
 
@@ -61,6 +62,7 @@ namespace AutoMap
         private void MapearComentarios()
         {
             CreateMap<ComentariosViewModel,Comentarios >().ReverseMap()
+            .ForMember(dest => dest.Manda, opt => opt.Ignore())
             .ForMember(dest=>dest.Usuario, opt => opt.Ignore())
             .ForMember(dest => dest.comentarios2, opt => opt.Ignore());
 

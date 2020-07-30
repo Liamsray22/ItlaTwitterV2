@@ -36,8 +36,6 @@ namespace LimboLand.Controllers
 
             var pubs = await _publicacionesRepo.TraerPubs(await IdUser());
             pubs.Usuario = User.Identity.Name;
-            //publicaciones.comentarios = coms;
-
             return View(pubs);
         }
 
@@ -56,6 +54,11 @@ namespace LimboLand.Controllers
         public async Task<IActionResult> Comentar(ComentariosViewModel cm)
         {
             await _comentariosRepo.CrearComent(cm);
+            if (cm.Manda == 2)
+            {
+                return RedirectToAction("Index", "HomeAmigos");
+
+            }
             return RedirectToAction("Index");
         }
 
@@ -63,6 +66,11 @@ namespace LimboLand.Controllers
         public async Task<IActionResult> Responder(RespuestaViewModel respuesta)
         {
             await _comentariosRepo.CrearRespuesta(respuesta);
+            if (respuesta.Manda == 2)
+            {
+                return RedirectToAction("Index", "HomeAmigos");
+
+            }
             return RedirectToAction("Index");
         }
 

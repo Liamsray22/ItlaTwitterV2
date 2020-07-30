@@ -53,21 +53,24 @@ namespace Repository.Repository
                     var img = await _context.Imagenes.FirstOrDefaultAsync(k => k.IdImagen == p.IdImagen);
                     pv.Imagen = img.Ruta;
                 }
+                pv.Usuario = await _usuarioRepo.GetNombreUsuarioById(id);
+
                 pv.comentarios = await _comentariosRepo.TraerComments(p.IdPublicacion);
                 list.Add(pv);
+
 
             }
             pvm.publicaciones = list;
             //pvm.comentarios = await _comentariosRepo.TraerComments(id);
             pvm.IdUsuario = id;
             pvm.Usuario = await _usuarioRepo.GetNombreUsuarioById(id);
-            var user = await _usuarioRepo.GetByIdAsync(id);
-            try
-            {
-                var image = await _context.Imagenes.FirstOrDefaultAsync(i => i.IdImagen == user.IdImagen);
-                pvm.Imagen = image.Ruta;
-            }
-            catch { }
+            //var user = await _usuarioRepo.GetByIdAsync(id);
+            //try
+            //{
+            //    var image = await _context.Imagenes.FirstOrDefaultAsync(i => i.IdImagen == user.IdImagen);
+            //    pvm.Imagen = image.Ruta;
+            //}
+            //catch { }
             return pvm;
             
         }

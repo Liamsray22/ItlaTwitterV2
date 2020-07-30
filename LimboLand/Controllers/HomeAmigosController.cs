@@ -32,6 +32,7 @@ namespace LimboLand.Controllers
         public async Task<IActionResult> Index()
         {
             var pubs = await _publicacionesRepo.TraerPubsAmigos(await IdUser());
+            ViewBag.IdLog = await IdUser();
             return View(pubs);
         }
     }

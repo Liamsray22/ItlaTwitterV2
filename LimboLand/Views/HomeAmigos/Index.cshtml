@@ -55,10 +55,12 @@ else
 
             <div class="card-footer">
                 <div class="collapse" id="coment-@(Persona.IdPublicacion)">
-                    <form asp-action="Comentar" method="post">
+                    <form asp-action="Comentar" asp-controller="HomePage" method="post">
                         <input type="text" class="form-control" name="Comentario" required />
                         <input value="@Persona.IdPublicacion" class="collapse" name="IdPublicacion" />
-                        <input value="@Persona.IdUsuario" class="collapse" name="IdUsuario" />
+                        <input value="@ViewBag.IdLog" class="collapse" name="IdUsuario" />
+                        <input value="2" class="collapse" name="Manda" />
+
 
 
                         <input type="submit" class="btn btn-primary" value="Comentar" />
@@ -84,10 +86,12 @@ else
                     <a class="card-link" href="" data-toggle="collapse" data-target="#coment-@(comentario.IdComentario)"><i class="fa fa-reply"></i> Responder</a>
                     <div class="card-footer">
                         <div class="collapse" id="coment-@(comentario.IdComentario)">
-                            <form asp-action="Responder" method="post">
+                            <form asp-action="Responder" asp-controller="HomePage" method="post">
                                 <input type="text" class="form-control" name="Comentario" required />
                                 <input value="@comentario.IdComentario" class="collapse" name="IdComentarioPadre" />
-                                <input value="@Persona.IdUsuario" class="collapse" name="IdUsuario" />
+                                <input value="@ViewBag.IdLog" class="collapse" name="IdUsuario" />
+                                <input value="2" class="collapse" name="Manda" />
+
 
 
                                 <input type="submit" class="btn btn-primary" value="Responder" />
