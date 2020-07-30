@@ -56,7 +56,7 @@ using DataBase;
 #line default
 #line hidden
             BeginContext(27, 1135, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4e53af19912e4488bb39eb0f8ebe6428", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0df532993bf2440e87641bac353316e0", async() => {
                 BeginContext(33, 1122, true);
                 WriteLiteral(@"
     <link rel=""stylesheet"" href=""https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"" integrity=""sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"" crossorigin=""anonymous"">
@@ -85,7 +85,7 @@ using DataBase;
             WriteLiteral("\r\n\r\n\r\n    <div class=\"alert alert-success\" role=\"alert\">\r\n        <h1>Su cuenta aun no han sido validada</h1>\r\n        Hemos enviado un codigo de confirmacion a su email, insertelo para activar su cuenta\r\n\r\n        ");
             EndContext();
             BeginContext(1377, 161, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "eed5cbbbe6324d39bef36b3bcb49507e", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f56d332ca1af465187cf20b146c6a66f", async() => {
                 BeginContext(1409, 122, true);
                 WriteLiteral("\r\n            <input type=\"number\" name=\"codigo\" required>\r\n            <input type=\"submit\" value=\"Enviar\">\r\n\r\n\r\n        ");
                 EndContext();
@@ -109,7 +109,7 @@ using DataBase;
             WriteLiteral("\r\n        ");
             EndContext();
             BeginContext(1548, 32, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "81114dd2a89a408e99079cf5f3455c76", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a172d28f8998409d9186a8ef849fbb20", async() => {
                 BeginContext(1570, 6, true);
                 WriteLiteral("Volver");
                 EndContext();

@@ -41,3 +41,4 @@ C:\Users\Liam\source\repos\LimboLand\LimboLand\obj\Debug\netcoreapp2.1\Razor\Vie
 C:\Users\Liam\source\repos\LimboLand\LimboLand\obj\Debug\netcoreapp2.1\Razor\Views\Account\Index.g.cshtml.cs
 C:\Users\Liam\source\repos\LimboLand\LimboLand\obj\Debug\netcoreapp2.1\Razor\Views\Amigos\ListaAmigos.g.cshtml.cs
 C:\Users\Liam\source\repos\LimboLand\LimboLand\obj\Debug\netcoreapp2.1\Razor\Views\Amigos\Buscar.g.cshtml.cs
+C:\Users\Liam\source\repos\LimboLand\LimboLand\obj\Debug\netcoreapp2.1\Razor\Views\HomePage\EditarPub.g.cshtml.cs

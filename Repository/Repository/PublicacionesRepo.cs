@@ -44,7 +44,6 @@ namespace Repository.Repository
             PublicacionesViewModel pvm = new PublicacionesViewModel();
             var listapubs = await _context.Publicaciones.Where(x => x.IdUsuario == id).ToListAsync();
             List<PublicacionesViewModel> list = new List<PublicacionesViewModel>();
-            //List<ComentariosViewModel> listcomentPub = new List<ComentariosViewModel>();
             foreach (var p in listapubs)
             {
                 var pv = _mapper.Map<PublicacionesViewModel>(p);
@@ -54,25 +53,28 @@ namespace Repository.Repository
                     pv.Imagen = img.Ruta;
                 }
                 pv.Usuario = await _usuarioRepo.GetNombreUsuarioById(id);
-
                 pv.comentarios = await _comentariosRepo.TraerComments(p.IdPublicacion);
                 list.Add(pv);
-
-
             }
             pvm.publicaciones = list;
-            //pvm.comentarios = await _comentariosRepo.TraerComments(id);
             pvm.IdUsuario = id;
-            pvm.Usuario = await _usuarioRepo.GetNombreUsuarioById(id);
-            //var user = await _usuarioRepo.GetByIdAsync(id);
-            //try
-            //{
-            //    var image = await _context.Imagenes.FirstOrDefaultAsync(i => i.IdImagen == user.IdImagen);
-            //    pvm.Imagen = image.Ruta;
-            //}
-            //catch { }
+            pvm.Usuario = await _usuarioRepo.GetNombreUsuarioById(id);            
             return pvm;
             
+        }
+
+        public async Task<PublicacionesViewModel> TraerPubById(int id)
+        {
+            var pub = await GetByIdAsync(id);
+            var pv = _mapper.Map<PublicacionesViewModel>(pub);
+            if (pub.IdImagen != null)
+            {
+                var img = await _context.Imagenes.FirstOrDefaultAsync(k => k.IdImagen == pub.IdImagen);
+                pv.Imagen = img.Ruta;
+            }
+            pv.Usuario = await _usuarioRepo.GetNombreUsuarioById(id);
+
+            return pv;
         }
 
         public async Task<List<PublicacionesViewModel>> TraerPubsAmigos(int id)

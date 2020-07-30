@@ -74,6 +74,20 @@ namespace LimboLand.Controllers
             return RedirectToAction("Index");
         }
 
+        public async Task<IActionResult> EditarPub(int id)
+        {
+            var editar = await _publicacionesRepo.TraerPubById(id);
+            return View(editar);
+        }
 
-    }
+        [HttpPost]
+        public async Task<IActionResult> EditarPub(PublicacionesViewModel edit)
+        {
+            return View();
+
+
+        }
+
+
+        }
 }

@@ -106,7 +106,7 @@ using DataBase;
             WriteLiteral("    ");
             EndContext();
             BeginContext(1174, 32, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "3a0b4fc8fce549b390d4626e25394b82", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "da2927ca16464647bebcbf5199b318eb", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -182,7 +182,7 @@ using DataBase;
             WriteLiteral("</td>\r\n                    <td>\r\n                        ");
             EndContext();
             BeginContext(1911, 271, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "06e5c00c97a644c3b5827f3e00a1df5c", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "de721819661a4d69bc308d711143db68", async() => {
                 BeginContext(1938, 87, true);
                 WriteLiteral("\r\n                            <input style=\"display:none;\" type=\"number\" name=\"IdAmigo\"");
                 EndContext();

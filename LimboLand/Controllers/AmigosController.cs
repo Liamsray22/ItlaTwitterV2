@@ -35,7 +35,6 @@ namespace LimboLand.Controllers
             return View(friends);
         }
 
-
         public async Task<IActionResult> Buscar(string Name)
         {
             var Personas = await _amigosRepo.BuscarPersonas(Name);

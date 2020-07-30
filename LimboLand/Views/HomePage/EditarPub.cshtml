@@ -1,0 +1,48 @@
+﻿@model DataBase.ViewModels.PublicacionesViewModel
+<div class="container-fluid gedf-wrapper">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <img src="@Model.Imagen" height="60px" width="60px" class="rounded-circle" />
+                    @Model.Usuario
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 gedf-main">
+            <!--- \\\\\\\Post-->
+            <div class="card gedf-card">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="posts-tab" data-toggle="tab" href="#posts" role="tab" aria-controls="posts" aria-selected="true">
+                                Escribe Algo
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+                <form asp-action="EditarPub" asp-controller="HomePage">
+                    <div class="card-body">
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane show active" id="posts" role="tabpanel" aria-labelledby="posts-tab">
+                                <div class="form-group">
+                                    <input type="text" asp-for="IdPublicacion" value="@Model.IdPublicacion" style="display:none;">
+                                    <input type="text" asp-for="IdUsuario" value="@Model.IdUsuario" style="display:none;">
+                                    <label class="sr-only" for="message">post</label>
+                                    <textarea asp-for="Publicacion" class="form-control" rows="3" placeholder="Que estas pensando?" required></textarea>
+                                </div>
+                            </div>
+                            <div class="btn-toolbar justify-content-between">
+                                <div class="btn-group">
+                                    <button type="submit" class="btn btn-primary">Publicar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

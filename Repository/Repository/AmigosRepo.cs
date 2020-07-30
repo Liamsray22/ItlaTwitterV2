@@ -64,19 +64,28 @@ namespace Repository.Repository
 
         public async Task AgregarAmigos(int IdUsuario, int IdAmigo)
         {
-            Amigos ad = new Amigos();
-            ad.IdUsuario = IdUsuario;
-            ad.IdAmigo = IdAmigo;
-            await AddAsync(ad);
-            ad.IdUsuario = IdAmigo;
-            ad.IdAmigo = IdUsuario;
-            await AddAsync(ad);
+            try
+            {
+                Amigos ad = new Amigos();
+                ad.IdUsuario = IdUsuario;
+                ad.IdAmigo = IdAmigo;
+                await AddAsync(ad);
+                ad.IdUsuario = IdAmigo;
+                ad.IdAmigo = IdUsuario;
+                await AddAsync(ad);
+            }
+            catch
+            {
+
+            }
 
         }
 
         public async Task BorrarAmigos(int IdUsuario, int IdAmigo)
         {
-            Amigos ad = new Amigos();
+            try
+            {
+                Amigos ad = new Amigos();
             ad.IdUsuario = IdUsuario;
             ad.IdAmigo = IdAmigo;
             await DeleteEntity(ad);
@@ -85,7 +94,11 @@ namespace Repository.Repository
             ad2.IdUsuario = IdAmigo;
             ad2.IdAmigo = IdUsuario;
             await DeleteEntity(ad2);
+            }
+            catch
+            {
 
+            }
         }
 
     }
