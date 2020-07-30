@@ -23,7 +23,6 @@ C:\Users\Liam\source\repos\LimboLand\LimboLand\obj\Debug\netcoreapp2.1\LimboLand
 C:\Users\Liam\source\repos\LimboLand\LimboLand\obj\Debug\netcoreapp2.1\Razor\Views\Account\Confirmacion.g.cshtml.cs
 C:\Users\Liam\source\repos\LimboLand\LimboLand\obj\Debug\netcoreapp2.1\Razor\Views\Account\Confirmacioncl.g.cshtml.cs
 C:\Users\Liam\source\repos\LimboLand\LimboLand\obj\Debug\netcoreapp2.1\Razor\Views\Account\ConfirmacionS.g.cshtml.cs
-C:\Users\Liam\source\repos\LimboLand\LimboLand\obj\Debug\netcoreapp2.1\Razor\Views\Account\Index.g.cshtml.cs
 C:\Users\Liam\source\repos\LimboLand\LimboLand\obj\Debug\netcoreapp2.1\Razor\Views\Account\Registro.g.cshtml.cs
 C:\Users\Liam\source\repos\LimboLand\LimboLand\obj\Debug\netcoreapp2.1\Razor\Views\HomePage\Index.g.cshtml.cs
 C:\Users\Liam\source\repos\LimboLand\LimboLand\obj\Debug\netcoreapp2.1\Razor\Views\Shared\Error.g.cshtml.cs
@@ -39,3 +38,4 @@ C:\Users\Liam\source\repos\LimboLand\LimboLand\obj\Debug\netcoreapp2.1\LimboLand
 C:\Users\Liam\source\repos\LimboLand\LimboLand\obj\Debug\netcoreapp2.1\LimboLand.dll
 C:\Users\Liam\source\repos\LimboLand\LimboLand\obj\Debug\netcoreapp2.1\LimboLand.pdb
 C:\Users\Liam\source\repos\LimboLand\LimboLand\obj\Debug\netcoreapp2.1\Razor\Views\HomeAmigos\Index.g.cshtml.cs
+C:\Users\Liam\source\repos\LimboLand\LimboLand\obj\Debug\netcoreapp2.1\Razor\Views\Account\Index.g.cshtml.cs

@@ -19,19 +19,10 @@ namespace LimboLand.Controllers
         #region Login
         public IActionResult Index()
         {
-            //try
-            //{
-
-            //    Usuarios userInfo = JsonConvert.DeserializeObject<Usuarios>(HttpContext.Session.GetString("SessionUser"));
-
-            //    if (userInfo != null)
-            //    {
-            //        return RedirectToAction("Home", "Social", userInfo);
-            //    }
-            //}
-            //catch
-            //{
-            //}
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "HomePage");
+            }
             return View();
         }
         [HttpPost]
@@ -80,6 +71,10 @@ namespace LimboLand.Controllers
             }
 
             return View(loginViewModel);
+        }
+        public IActionResult Login()
+        {
+            return RedirectToAction("Index");
         }
         #endregion
 

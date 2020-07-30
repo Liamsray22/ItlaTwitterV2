@@ -32,10 +32,10 @@
     <nav class="navbar navbar-dark bg-dark">
         <a asp-area="" asp-controller="HomePage" asp-action="Index" class="navbar-brand">Limbo</a>
         <a asp-area="" asp-controller="HomeAmigos" asp-action="Index">Publicaciones de Amigos</a>
-        <a asp-area="" asp-controller="HomePage" asp-action="ListaAmigos">Mis Amigos</a>
+        <a asp-area="" asp-controller="Amigos" asp-action="ListaAmigos">Mis Amigos</a>
         <a asp-area="" asp-controller="Account" asp-action="CerrarSesion">Cerrar Sesion</a>
 
-        <form asp-action="Buscar" asp-controller="Social">
+        <form asp-action="Buscar" asp-controller="Amigos">
             <div class="input-group">
                 <input type="search" name="NombreUsuario" class="form-control" required placeholder="Buscar Nuevos Amigos">
                 <div class="input-group-append">

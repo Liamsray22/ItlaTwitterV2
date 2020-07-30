@@ -21,7 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Account\" />
     <Folder Include="wwwroot\images\fotoPerfil\" />
     <Folder Include="wwwroot\images\fotoPub\" />
   </ItemGroup>
