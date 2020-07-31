@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
-using DataBase;
 using DataBase.Models;
 using DTO.DTO;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Repository.Repository
@@ -20,15 +14,15 @@ namespace Repository.Repository
         private readonly UsuarioAPIRepo _usuarioAPIRepo;
         private readonly IMapper _mapper;
 
-
-        public ComentariosAPIRepo(LIMBODBContext context, IMapper mapper, 
-                            IHostingEnvironment Hotin, UsuarioAPIRepo usuarioAPIRepo) : base(context)
+        public ComentariosAPIRepo(LIMBODBContext context, IMapper mapper,
+                                    UsuarioAPIRepo usuarioAPIRepo) : base(context)
         {
             _context = context;
             _mapper = mapper;
             _usuarioAPIRepo = usuarioAPIRepo;
         }
 
+        //Traer los comentarios por el id de la publicacion
         public async Task<List<ComentariosDTO>> TraerComments(int id)
         {
             var comentarios = await _context.Comentarios.Where(x=>x.IdPublicacion == id).ToListAsync();
@@ -53,24 +47,7 @@ namespace Repository.Repository
             return listcvm;
             
         }
-
-        //public async Task CrearComent(ComentariosViewModel cvm)
-        //{
-        //    var comentario = _mapper.Map<Comentarios>(cvm);
-        //    await AddAsync(comentario);
-        //}
-
-        //public async Task CrearRespuesta(RespuestaViewModel res)
-        //{
-        //    var comentario = _mapper.Map<Comentarios>(res);
-        //    await AddAsync(comentario);
-        //    Comentarios2 cm2 = new Comentarios2();
-        //    cm2.IdComentarioHijo = comentario.IdComentario;
-        //    cm2.IdComentarioPadre = res.IdComentarioPadre;
-        //    await _context.Comentarios2.AddAsync(cm2);
-        //    await _context.SaveChangesAsync();
-        //}
-
+            
 
     }
 }
