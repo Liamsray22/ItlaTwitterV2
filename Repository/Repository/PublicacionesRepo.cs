@@ -51,7 +51,7 @@ namespace Repository.Repository
                 var pv = _mapper.Map<PublicacionesViewModel>(p);
                 if (p.IdImagen != null)
                 {
-                    var img = await _context.Imagenes.FirstOrDefaultAsync(k => k.IdImagen == p.IdImagen);
+                    var img = await _imagenesRepo.GetByIdAsync(p.IdImagen.Value);
                     pv.Imagen = img.Ruta;
                 }
                 pv.Usuario = await _usuarioRepo.GetNombreUsuarioById(id);
@@ -60,7 +60,10 @@ namespace Repository.Repository
             }
             pvm.publicaciones = list;
             pvm.IdUsuario = id;
-            pvm.Usuario = await _usuarioRepo.GetNombreUsuarioById(id);            
+            pvm.Usuario = await _usuarioRepo.GetNombreUsuarioById(id);
+            var usu = await _usuarioRepo.GetUsuarioByName(pvm.Usuario);
+            var im = await _imagenesRepo.GetByIdAsync(usu.IdImagen.Value);
+            pvm.Imagen = im.Ruta;
             return pvm;
             
         }
@@ -113,7 +116,7 @@ namespace Repository.Repository
                     Imagenes img = new Imagenes();
                     img.Nombre = FileName;
                     img.Ruta = "images\\fotoPub\\" + FileName + "";
-                    await _context.Imagenes.AddAsync(img);
+                    await _imagenesRepo.AddAsync(img);
 
                     var image = await _context.Imagenes.FirstOrDefaultAsync(d => d.Nombre.Contains(minipub + codigo));
 

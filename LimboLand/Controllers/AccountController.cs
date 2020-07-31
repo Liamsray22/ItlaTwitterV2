@@ -128,5 +128,16 @@ namespace LimboLand.Controllers
         //End Cerrar Sesion**********************************************
 
 
+        //Activar Usuario**********************************************
+        #region ActivarUsuario
+        public async Task<IActionResult> ActivarUsuario(int? id)
+        {
+            await _usuarioRepo.ActivarUsuario(id.Value);
+            return RedirectToAction("Index");
+        }
+        #endregion
+
+        //End Activar Usuario**********************************************
+
     }
 }

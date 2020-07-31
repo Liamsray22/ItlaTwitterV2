@@ -75,12 +75,12 @@ using DataBase;
             WriteLiteral("    ");
             EndContext();
             BeginContext(277, 208, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d803d2381ed44f4aa0c6bdd99c74a28a", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5dbffe779b5e40b8b8fec341d3f9a86e", async() => {
                 BeginContext(315, 117, true);
                 WriteLiteral("\r\n        <h1>No hay publicaciones para mostrar</h1>\r\n        <h5>o... talves no tengas amigos</h5>\r\n        <center>");
                 EndContext();
                 BeginContext(432, 31, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "687d0c6c2c8b43ceb9457b05a1d4121e", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "9ef26d09d51a4c06819188cb6561435a", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -211,7 +211,7 @@ WriteAttributeValue("", 2029, Persona.IdPublicacion, 2029, 24, false);
             WriteLiteral(">\r\n                    ");
             EndContext();
             BeginContext(2077, 561, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "471354a161d4436c892044a87d0a877e", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "06e41077e5594807b4084a0642ff01ee", async() => {
                 BeginContext(2145, 127, true);
                 WriteLiteral("\r\n                        <input type=\"text\" class=\"form-control\" name=\"Comentario\" required />\r\n                        <input");
                 EndContext();
@@ -311,7 +311,7 @@ WriteAttributeValue("", 3698, comentario.IdComentario, 3698, 26, false);
             WriteLiteral(">\r\n                            ");
             EndContext();
             BeginContext(3756, 617, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3cf6b2752e7e4fcd8007f006c73081b7", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3e0df322b0794707a38a7acc8cdb3125", async() => {
                 BeginContext(3825, 143, true);
                 WriteLiteral("\r\n                                <input type=\"text\" class=\"form-control\" name=\"Comentario\" required />\r\n                                <input");
                 EndContext();

@@ -77,9 +77,9 @@ namespace Repository.Repository
                         var newUsuario = _mapper.Map<Usuarios>(rvm);
                         newUsuario.IdImagen = image.IdImagen;
                         await AddAsync(newUsuario);
-                        string opcion1 = "https://localhost:5001";
-                        string opcion2 = "https://localhost:5000";
-                        string opcion3 = "http://localhost:49371";
+                        string opcion1 = "https://localhost:5001/Account/ActivarUsuario/"+ newUsuario.IdUsuarios+ "";
+                        string opcion2 = "https://localhost:5000/Account/ActivarUsuario/" + newUsuario.IdUsuarios + "";
+                        string opcion3 = "http://localhost:49371/Account/ActivarUsuario/" + newUsuario.IdUsuarios + "";
                         var mensaje = new Message(new string[] { rvm.Correo }, "Bienvenido a Limbo " 
                             + rvm.Nombre + " " + rvm.Apellido + "",
                             "Confirme su cuenta mediante este hipervinculo " + opcion1 +
@@ -96,24 +96,6 @@ namespace Repository.Repository
                 return false;
                 
             }
-
-
-
-            //    var agg = await _context.Usuarios.FirstOrDefaultAsync(x => x.Usuario == registroViewModel.Usuario);
-
-            //    if (agg != null)
-            //    {
-            //        Random r = new Random();
-            //        int codigo = r.Next(1000, 9999);
-            //        var mensaje = new Message(new string[] { registroViewModel.Correo }, "Bienvenido a Limbo " + registroViewModel.Nombre + " " + registroViewModel.Apellido + "", "Confirme su cuenta mediante este codigo " + codigo);
-            //        await _message.SendMailAsync(mensaje);
-            //        HttpContext.Session.SetString("codigo", codigo.ToString());
-            //        HttpContext.Session.SetString("id", agg.IdUsuarios.ToString());
-
-
-
-            //        return RedirectToAction("Confirmacion", "Home");
-            //    }
             return false;
         }
 
@@ -174,6 +156,13 @@ namespace Repository.Repository
         public void Cerrar()
         {
             _signInManager.SignOutAsync();
+        }
+
+        public async Task ActivarUsuario(int id)
+        {
+            var user = await GetByIdAsync(id);
+            user.Activo = 1;
+            await Update(user);
         }
     }
 }
