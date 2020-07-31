@@ -14,7 +14,7 @@ namespace DTO.DTO
         public int? IdUsuario { get; set; }
         public string Usuario { get; set; }
         //public int Manda { get; set; }
-        public IEnumerable<ComentariosDTO> comentarios2 { get; set; }
+        public IEnumerable<ComentariosDTO> respuestas { get; set; }
         
     }
 }

@@ -44,3 +44,5 @@ C:\Users\Liam\source\repos\LimboLand\LimboLand\obj\Debug\netcoreapp2.1\Razor\Vie
 C:\Users\Liam\source\repos\LimboLand\LimboLand\obj\Debug\netcoreapp2.1\Razor\Views\HomePage\EditarPub.g.cshtml.cs
 C:\Users\Liam\source\repos\LimboLand\LimboLand\bin\Debug\netcoreapp2.1\EmailConfig.dll
 C:\Users\Liam\source\repos\LimboLand\LimboLand\bin\Debug\netcoreapp2.1\EmailConfig.pdb
+C:\Users\Liam\source\repos\LimboLand\LimboLand\bin\Debug\netcoreapp2.1\DTO.dll
+C:\Users\Liam\source\repos\LimboLand\LimboLand\bin\Debug\netcoreapp2.1\DTO.pdb

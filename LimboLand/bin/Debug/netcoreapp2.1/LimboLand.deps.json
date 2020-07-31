@@ -812,6 +812,7 @@
       "AutoMap/1.0.0": {
         "dependencies": {
           "AutoMapper": "10.0.0",
+          "DTO": "1.0.0",
           "DataBase": "1.0.0",
           "Microsoft.AspNetCore.App": "2.1.1",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "2.1.1"
@@ -836,6 +837,17 @@
           "DataBase.dll": {}
         }
       },
+      "DTO/1.0.0": {
+        "dependencies": {
+          "DataBase": "1.0.0"
+        },
+        "runtime": {
+          "DTO.dll": {}
+        },
+        "compile": {
+          "DTO.dll": {}
+        }
+      },
       "EmailConfig/1.0.0": {
         "dependencies": {
           "NETCore.MailKit": "2.0.0"
@@ -852,6 +864,7 @@
           "AutoMap": "1.0.0",
           "AutoMapper": "10.0.0",
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "7.0.0",
+          "DTO": "1.0.0",
           "DataBase": "1.0.0",
           "EmailConfig": "1.0.0",
           "Microsoft.AspNetCore.App": "2.1.1",
@@ -4112,6 +4125,11 @@
       "sha512": ""
     },
     "DataBase/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DTO/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

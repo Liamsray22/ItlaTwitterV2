@@ -71,7 +71,7 @@ namespace AutoMap
         {
             CreateMap<ComentariosDTO, Comentarios>().ReverseMap()
             .ForMember(dest => dest.Usuario, opt => opt.Ignore())
-            .ForMember(dest => dest.comentarios2, opt => opt.Ignore());
+            .ForMember(dest => dest.respuestas, opt => opt.Ignore());
 
         }
 

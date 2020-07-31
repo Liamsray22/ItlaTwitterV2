@@ -62,7 +62,7 @@ namespace APILimboLand
             services.AddScoped<UsuarioAPIRepo>();
             services.AddScoped<ComentariosAPIRepo>();
             //services.AddScoped<AmigosRepo>();
-            //services.AddScoped<ImagenesRepo>();
+            services.AddScoped<ImagenesAPIRepo>();
 
 
             services.AddSwaggerGen();

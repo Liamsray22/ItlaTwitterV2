@@ -47,7 +47,7 @@ namespace Repository.Repository
                     comentarito.Usuario = await _usuarioAPIRepo.GetNombreUsuarioById(Comentariohijo.IdUsuario);
                     comen2.Add(comentarito);
                 }
-                coment.comentarios2 = comen2;
+                coment.respuestas = comen2;
                 listcvm.Add(coment);
             }
             return listcvm;

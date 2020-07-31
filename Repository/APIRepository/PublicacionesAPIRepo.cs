@@ -19,18 +19,20 @@ namespace Repository.Repository
         private readonly LIMBODBContext _context;
         private readonly UsuarioAPIRepo _usuarioAPIRepo;
         private readonly ComentariosAPIRepo _comentariosAPIRepo;
+        private readonly ImagenesAPIRepo _imagenesAPIRepo;
+
         private readonly IMapper _mapper;
 
 
         public PublicacionesAPIRepo(LIMBODBContext context, IMapper mapper, 
-                             UsuarioAPIRepo usuarioAPIRepo, ComentariosAPIRepo comentariosAPIRepo
-                            ) : base(context)
+                             UsuarioAPIRepo usuarioAPIRepo, ComentariosAPIRepo comentariosAPIRepo,
+                            ImagenesAPIRepo imagenesAPIRepo) : base(context)
         {
             _context = context;
             _mapper = mapper;
-            //this.Hotin = Hotin;
             _usuarioAPIRepo = usuarioAPIRepo;
             _comentariosAPIRepo = comentariosAPIRepo;
+            _imagenesAPIRepo = imagenesAPIRepo;
         }
 
         public async Task<List<PublicacionesDTO>> TraerPubsByName(string name)
@@ -47,8 +49,8 @@ namespace Repository.Repository
                 var pv = _mapper.Map<PublicacionesDTO>(p);
                 if (p.IdImagen != null)
                 {
-                    //var img = await _imagenesRepo.GetByIdAsync(p.IdImagen.Value);
-                    pv.Imagen = "img.Ruta";
+                    var img = await _imagenesAPIRepo.GetByIdAsync(p.IdImagen.Value);
+                    pv.Imagen = img.Ruta;
                 }
                 pv.Usuario = await _usuarioAPIRepo.GetNombreUsuarioById(pv.IdUsuario);
                 pv.comentarios = await _comentariosAPIRepo.TraerComments(p.IdPublicacion);

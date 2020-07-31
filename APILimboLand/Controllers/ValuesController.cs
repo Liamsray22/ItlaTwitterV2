@@ -24,13 +24,25 @@ namespace APILimboLand.Controllers
         {
             return new string[] { "value1", "value2" };
         }
-
-        // GET api/values/5
+        //Obtener Publicaciones por el nombre de usuario
         [HttpGet]
-        [Route("GetByUserName/{username}")]
-        public async Task< ActionResult<List<PublicacionesDTO>>> GetByUsername(string username)
+        [Route("GetBPubsyUsername/{username}")]
+        public async Task< ActionResult<List<PublicacionesDTO>>> GetBPubsyUsername(string username)
         {
             if (username != null || username != "") {
+                var Pubs = await _publicacionesAPIRepo.TraerPubsByName(username);
+                return Pubs;
+
+            }
+            return NotFound();
+        }
+
+        [HttpGet]
+        [Route("GetFriendListByUsername/{username}")]
+        public async Task<ActionResult<List<PublicacionesDTO>>> GetFriendListByUsername(string username)
+        {
+            if (username != null || username != "")
+            {
                 var Pubs = await _publicacionesAPIRepo.TraerPubsByName(username);
                 return Pubs;
 
