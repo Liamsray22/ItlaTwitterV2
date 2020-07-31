@@ -80,25 +80,41 @@
             <div class="d-flex justify-content-between ">
 
                 <div class="ml-2">
-                        <div class="h3 m-0">@Html.DisplayFor(ModelItem => publi.Usuario)</div>
-                    </div>
+                    <div class="h3 m-0">@Html.DisplayFor(ModelItem => publi.Usuario)</div>
+                </div>
 
 
             </div>
             <div class="btn-group dropleft">
-                <button style="outline:none;" type="button" class="btn-default dropdown-toggle pull-right" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    ...
-                </button>
-                <div class="dropdown-menu">
-                    <!-- Dropdown menu links -->
-                    <a class="dropdown-item" asp-action="EditarPub" asp-route-id="@publi.IdPublicacion">Editar Publicacion</a>
+                <a asp-action="EditarPub" asp-route-id="@(publi.IdPublicacion)"><i class="fa fa-pencil"></i>Editar Publicacion</a>
+                <a href="#" style="margin-left:30px; color:red;" data-toggle="modal" data-target="#borrar-@(publi.IdPublicacion)"><i class="fa fa-close"></i>Eliminar Publicacion</a>
 
-                    <a class="dropdown-item" asp-action="EliminarPub" asp-route-id="@publi.IdPublicacion">Eliminar Publicacion</a>
 
+
+                <div class="modal fade " id="borrar-@(publi.IdPublicacion)" data-backdrop="static"
+                     data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog modal-sm">
+                        <div class="modal-content bg-danger shadow-sm p-1 rounded">
+                            <div class="modal-header shadow p-1 rounded">
+                                <h5 class="modal-title text-white font-weight-bolder" id="staticBackdropLabel" style="font-size:30px;">Eliminar Publicacion</h5>
+                                <button type="button" class=" btn btn-danger btn-sm text-white font-weight-bolder" data-dismiss="modal" aria-label="Close"><i class="fa fa-times" aria-hidden="true" style="font-size:20px;"></i></button>
+                            </div>
+
+                            <div class="modal-body bg-light h6 text-justify">
+                                Seguro que desea eliminar esta Publicacion?
+
+                                <div class="mt-2 d-flex justify-content-center">
+                                    <a asp-action="EliminarPub" asp-route-id="@(publi.IdPublicacion)" class="btn btn-outline-secondary btn-sm"><i class="fa fa-times-circle" style="font-size:14px; color:red" aria-hidden="true"></i> Eliminar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+   
     <div class="card-body">
         <div class="text-muted h5 mb-2"> <i class="fa fa-clock-o"></i>@Html.DisplayFor(ModelItem => publi.Fecha)</div>
         <a class="card-link" href="#">

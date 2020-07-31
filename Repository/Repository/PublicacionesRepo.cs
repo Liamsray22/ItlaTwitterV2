@@ -23,11 +23,13 @@ namespace Repository.Repository
         private readonly ComentariosRepo _comentariosRepo;
         private readonly IMapper _mapper;
         private readonly IHostingEnvironment Hotin;
+        private readonly ImagenesRepo _imagenesRepo;
 
 
         public PublicacionesRepo(LIMBODBContext context, UserManager<IdentityUser> userManager,
                             SignInManager<IdentityUser> signInManager, IMapper mapper, 
-                            IHostingEnvironment Hotin, UsuarioRepo usuarioRepo, ComentariosRepo comentariosRepo) : base(context)
+                            IHostingEnvironment Hotin, UsuarioRepo usuarioRepo, ComentariosRepo comentariosRepo,
+                            ImagenesRepo imagenesRepo) : base(context)
         {
             _context = context;
             _userManager = userManager;
@@ -36,7 +38,7 @@ namespace Repository.Repository
             this.Hotin = Hotin;
             _usuarioRepo = usuarioRepo;
             _comentariosRepo = comentariosRepo;
-            //TarjetadeUsuario = new TarjetadeUsuario(context);
+            _imagenesRepo = imagenesRepo;
         }
 
         public async Task<PublicacionesViewModel> TraerPubs(int id)
@@ -72,7 +74,7 @@ namespace Repository.Repository
                 var img = await _context.Imagenes.FirstOrDefaultAsync(k => k.IdImagen == pub.IdImagen);
                 pv.Imagen = img.Ruta;
             }
-            pv.Usuario = await _usuarioRepo.GetNombreUsuarioById(id);
+            pv.Usuario = await _usuarioRepo.GetNombreUsuarioById(pub.IdUsuario);
 
             return pv;
         }
@@ -112,7 +114,6 @@ namespace Repository.Repository
                     img.Nombre = FileName;
                     img.Ruta = "images\\fotoPub\\" + FileName + "";
                     await _context.Imagenes.AddAsync(img);
-                    _context.SaveChanges();
 
                     var image = await _context.Imagenes.FirstOrDefaultAsync(d => d.Nombre.Contains(minipub + codigo));
 
@@ -128,6 +129,63 @@ namespace Repository.Repository
             await AddAsync(publicacion);
             //publicacion.IdImagen = pub
             return false;
-        } 
+        }
+
+        public async Task<bool> EditarPubs(PublicacionesViewModel pub)
+        {
+            var publi = await GetByIdAsync(pub.IdPublicacion);
+            publi.Publicacion = pub.Publicacion;
+            string FileName = null;
+
+            if (pub.FotoPub != null)
+            {
+                try
+                {
+                    string minipub = pub.Publicacion.Substring(0, 5);
+
+                    Random r = new Random();
+                    int codigo = r.Next(10000000, 99999999);
+                    string Subir = Path.Combine(Hotin.WebRootPath, "images\\fotoPub");
+                    FileName = minipub + codigo + ".png";
+                    string FilePath = Path.Combine(Subir, FileName);
+
+                    pub.FotoPub.CopyTo(new FileStream(FilePath, FileMode.Create));
+
+                    if (publi.IdImagen != null) {
+                        var img = await _imagenesRepo.GetByIdAsync(publi.IdImagen.Value);
+                        _imagenesRepo.Borrar(Path.Combine(Hotin.WebRootPath, img.Ruta));
+
+                        img.Nombre = FileName;
+                        img.Ruta = "images\\fotoPub\\" + FileName + "";
+                        await _imagenesRepo.Update(img);
+                    }
+                    else
+                    {
+                        Imagenes img = new Imagenes();
+                        img.Nombre = FileName;
+                        img.Ruta = "images\\fotoPub\\" + FileName + "";
+                        await _context.Imagenes.AddAsync(img);
+
+                        var image = await _context.Imagenes.FirstOrDefaultAsync(d => d.Nombre.Contains(minipub + codigo));
+
+                        publi.IdImagen = image.IdImagen;
+
+
+                    }
+
+                    return true;
+
+                }
+                catch
+                {
+                    return false;
+                }
+
+            }
+            await Update(publi);
+
+
+            return true;
+        }
     }
 }

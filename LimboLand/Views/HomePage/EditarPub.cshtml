@@ -22,7 +22,7 @@
 
                     </ul>
                 </div>
-                <form asp-action="EditarPub" asp-controller="HomePage">
+                <form asp-action="EditarPub" asp-controller="HomePage" enctype="multipart/form-data">
                     <div class="card-body">
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane show active" id="posts" role="tabpanel" aria-labelledby="posts-tab">
@@ -31,7 +31,19 @@
                                     <input type="text" asp-for="IdUsuario" value="@Model.IdUsuario" style="display:none;">
                                     <label class="sr-only" for="message">post</label>
                                     <textarea asp-for="Publicacion" class="form-control" rows="3" placeholder="Que estas pensando?" required></textarea>
+                                    <label class="sr-only" for="message">Cambiar imagen</label>
+                                    <input asp-for="FotoPub" accept="image/*" />
                                 </div>
+                                @if (Model.Imagen != null || Model.Imagen != "")
+                                {
+                                    <center>
+                                        <div class="card-body">
+                                            <a class="card-link" href="#">
+                                                <img src="~/@(Model.Imagen)" width="100%" height="500px" />
+                                            </a>
+                                        </div>
+                                    </center>
+                                }
                             </div>
                             <div class="btn-toolbar justify-content-between">
                                 <div class="btn-group">

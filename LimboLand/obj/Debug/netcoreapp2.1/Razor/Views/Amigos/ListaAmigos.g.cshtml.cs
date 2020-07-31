@@ -65,7 +65,7 @@ using DataBase;
             WriteLiteral("        <h1>No tienes Amigos</h1>\r\n        ");
             EndContext();
             BeginContext(171, 57, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "942f4bbdb91c41a5969c7364e771152b", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "4b47f9ffe3744ead94598d8ad6c9c1ca", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -137,7 +137,7 @@ using DataBase;
             WriteLiteral("</p>\r\n                    <p class=\"caption\">Usuario</p>\r\n                </div>\r\n\r\n            </div>\r\n            ");
             EndContext();
             BeginContext(1246, 118, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "cf4681fa97a94ff9b26ef3f78a231b46", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ebf7c20720a34e7ba0371de98cf26ba1", async() => {
                 BeginContext(1312, 48, true);
                 WriteLiteral("<button class=\"btn btn-danger\">Eliminar</button>");
                 EndContext();

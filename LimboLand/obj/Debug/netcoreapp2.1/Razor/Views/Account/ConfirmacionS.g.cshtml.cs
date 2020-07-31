@@ -53,7 +53,7 @@ using DataBase;
 #line default
 #line hidden
             BeginContext(27, 1135, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f413c556fc6e44058aab21715e96de48", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d812063e1c1b4c43b5b0ebf6e75209d7", async() => {
                 BeginContext(33, 1122, true);
                 WriteLiteral(@"
     <link rel=""stylesheet"" href=""https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"" integrity=""sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"" crossorigin=""anonymous"">
@@ -82,7 +82,7 @@ using DataBase;
             WriteLiteral("\r\n\r\n\r\n<div class=\"alert alert-success\" role=\"alert\">\r\n    <h1>Su cuenta ha sido validada Exitosamente</h1>\r\nPuede iniciar sesion en su cuenta de <strong>Limbo</strong>\r\n    ");
             EndContext();
             BeginContext(1335, 40, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "73ab10999ef34254a12733715de5a402", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "035d05d4e0e24026ad2f9a2fe0814dd4", async() => {
                 BeginContext(1357, 14, true);
                 WriteLiteral("Iniciar Sesion");
                 EndContext();

@@ -83,8 +83,12 @@ namespace LimboLand.Controllers
         [HttpPost]
         public async Task<IActionResult> EditarPub(PublicacionesViewModel edit)
         {
-            return View();
-
+            if (ModelState.IsValid)
+            {
+                await _publicacionesRepo.EditarPubs(edit);
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
 
         }
 
