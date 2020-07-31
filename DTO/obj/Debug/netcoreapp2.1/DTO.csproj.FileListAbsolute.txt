@@ -1,0 +1,12 @@
+C:\Users\Liam\source\repos\LimboLand\DTO\bin\Debug\netcoreapp2.1\DTO.deps.json
+C:\Users\Liam\source\repos\LimboLand\DTO\bin\Debug\netcoreapp2.1\DTO.dll
+C:\Users\Liam\source\repos\LimboLand\DTO\bin\Debug\netcoreapp2.1\DTO.pdb
+C:\Users\Liam\source\repos\LimboLand\DTO\bin\Debug\netcoreapp2.1\DataBase.dll
+C:\Users\Liam\source\repos\LimboLand\DTO\bin\Debug\netcoreapp2.1\DataBase.pdb
+C:\Users\Liam\source\repos\LimboLand\DTO\obj\Debug\netcoreapp2.1\DTO.csprojAssemblyReference.cache
+C:\Users\Liam\source\repos\LimboLand\DTO\obj\Debug\netcoreapp2.1\DTO.csproj.CoreCompileInputs.cache
+C:\Users\Liam\source\repos\LimboLand\DTO\obj\Debug\netcoreapp2.1\DTO.AssemblyInfoInputs.cache
+C:\Users\Liam\source\repos\LimboLand\DTO\obj\Debug\netcoreapp2.1\DTO.AssemblyInfo.cs
+C:\Users\Liam\source\repos\LimboLand\DTO\obj\Debug\netcoreapp2.1\DTO.csproj.CopyComplete
+C:\Users\Liam\source\repos\LimboLand\DTO\obj\Debug\netcoreapp2.1\DTO.dll
+C:\Users\Liam\source\repos\LimboLand\DTO\obj\Debug\netcoreapp2.1\DTO.pdb

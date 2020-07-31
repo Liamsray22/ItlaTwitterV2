@@ -16,3 +16,5 @@ C:\Users\Liam\source\repos\LimboLand\Repository\bin\Debug\netcoreapp2.1\DataBase
 C:\Users\Liam\source\repos\LimboLand\Repository\obj\Debug\netcoreapp2.1\Repository.csproj.CopyComplete
 C:\Users\Liam\source\repos\LimboLand\Repository\bin\Debug\netcoreapp2.1\EmailConfig.dll
 C:\Users\Liam\source\repos\LimboLand\Repository\bin\Debug\netcoreapp2.1\EmailConfig.pdb
+C:\Users\Liam\source\repos\LimboLand\Repository\bin\Debug\netcoreapp2.1\DTO.dll
+C:\Users\Liam\source\repos\LimboLand\Repository\bin\Debug\netcoreapp2.1\DTO.pdb
