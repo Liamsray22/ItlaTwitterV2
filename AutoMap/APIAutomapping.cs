@@ -61,9 +61,7 @@ namespace AutoMap
         private void MapearPublicaciones()
         {
             CreateMap<PublicacionesDTO, Publicaciones>().ReverseMap()
-            .ForMember(dest => dest.FotoPub, opt => opt.Ignore())
             .ForMember(dest => dest.Usuario, opt => opt.Ignore())
-            .ForMember(dest => dest.publicaciones, opt => opt.Ignore())
             .ForMember(dest => dest.comentarios, opt => opt.Ignore())
             ;
 
@@ -71,8 +69,7 @@ namespace AutoMap
 
         private void MapearComentarios()
         {
-            CreateMap<ComentariosViewModel, Comentarios>().ReverseMap()
-            .ForMember(dest => dest.Manda, opt => opt.Ignore())
+            CreateMap<ComentariosDTO, Comentarios>().ReverseMap()
             .ForMember(dest => dest.Usuario, opt => opt.Ignore())
             .ForMember(dest => dest.comentarios2, opt => opt.Ignore());
 

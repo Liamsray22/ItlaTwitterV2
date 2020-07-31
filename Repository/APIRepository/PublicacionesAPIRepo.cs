@@ -33,12 +33,15 @@ namespace Repository.Repository
             _comentariosAPIRepo = comentariosAPIRepo;
         }
 
-        public async Task<PublicacionesDTO> TraerPubsByName(string name)
+        public async Task<List<PublicacionesDTO>> TraerPubsByName(string name)
         {
-            PublicacionesDTO pvm = new PublicacionesDTO();
-            var user = await _usuarioAPIRepo.GetUsuarioByName(name);
-            var listapubs = await _context.Publicaciones.Where(x => x.IdUsuario == user.IdUsuarios).OrderByDescending(o=>o.Fecha).ToListAsync();
+
             List<PublicacionesDTO> list = new List<PublicacionesDTO>();
+
+            //PublicacionesDTO pvm = new PublicacionesDTO();
+            var user = await _usuarioAPIRepo.GetUsuarioByName(name);
+            var listapubs = await _context.Publicaciones.Where(x => x.IdUsuario == user.IdUsuarios).OrderByDescending(o => o.Fecha).ToListAsync();
+            //List<PublicacionesDTO> list = new List<PublicacionesDTO>();
             foreach (var p in listapubs)
             {
                 var pv = _mapper.Map<PublicacionesDTO>(p);
@@ -51,14 +54,14 @@ namespace Repository.Repository
                 pv.comentarios = await _comentariosAPIRepo.TraerComments(p.IdPublicacion);
                 list.Add(pv);
             }
-            pvm.publicaciones = list;
-            pvm.IdUsuario = user.IdUsuarios;
-            pvm.Usuario = await _usuarioAPIRepo.GetNombreUsuarioById(user.IdUsuarios);
-            var usu = await _usuarioAPIRepo.GetUsuarioByName(pvm.Usuario);
-            //var im = await _imagenesRepo.GetByIdAsync(usu.IdImagen.Value);
-            pvm.Imagen = "im.Ruta";
-            return pvm;
-            
+            //pvm.publicaciones = list;
+            //pvm.IdUsuario = user.IdUsuarios;
+            //pvm.Usuario = await _usuarioAPIRepo.GetNombreUsuarioById(user.IdUsuarios);
+            //var usu = await _usuarioAPIRepo.GetUsuarioByName(pvm.Usuario);
+            ////var im = await _imagenesRepo.GetByIdAsync(usu.IdImagen.Value);
+            //pvm.Imagen = "im.Ruta";
+            return list;
+
         }
 
         //public async Task<PublicacionesDTO> TraerPubById(int id)
@@ -92,7 +95,7 @@ namespace Repository.Repository
         //    publicacion.Publicacion = pub.Publicacion;
 
         //    string FileName = null;
-            
+
         //    if (pub.FotoPub != null)
         //    {
         //        try
@@ -114,7 +117,7 @@ namespace Repository.Repository
         //            var image = await _context.Imagenes.FirstOrDefaultAsync(d => d.Nombre.Contains(minipub + codigo));
 
         //            publicacion.IdImagen = image.IdImagen;
-                   
+
         //        }
         //        catch
         //        {

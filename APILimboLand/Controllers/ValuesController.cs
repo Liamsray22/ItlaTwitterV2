@@ -28,7 +28,7 @@ namespace APILimboLand.Controllers
         // GET api/values/5
         [HttpGet]
         [Route("GetByUserName/{username}")]
-        public async Task< ActionResult<PublicacionesDTO>> GetByUsername(string username)
+        public async Task< ActionResult<List<PublicacionesDTO>>> GetByUsername(string username)
         {
             if (username != null || username != "") {
                 var Pubs = await _publicacionesAPIRepo.TraerPubsByName(username);

@@ -16,14 +16,14 @@ namespace DTO.DTO
         public string Publicacion { get; set; }
         public DateTime? Fecha { get; set; }
         public string Imagen { get; set; }
-        public IFormFile FotoPub { get; set; }
+        //public IFormFile FotoPub { get; set; }
 
         public string Usuario { get; set; }
         //public int CantidadAmigos { get; set; }
 
 
-        public IEnumerable<PublicacionesDTO> publicaciones;
+        //public IEnumerable<PublicacionesDTO> publicaciones;
 
-        public IEnumerable<ComentariosViewModel> comentarios;
+        public IEnumerable<ComentariosDTO> comentarios { get; set; }
     }
 }

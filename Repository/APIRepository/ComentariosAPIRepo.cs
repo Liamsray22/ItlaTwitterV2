@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using DataBase;
 using DataBase.Models;
-using DataBase.ViewModels;
+using DTO.DTO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -29,21 +29,21 @@ namespace Repository.Repository
             _usuarioAPIRepo = usuarioAPIRepo;
         }
 
-        public async Task<List<ComentariosViewModel>> TraerComments(int id)
+        public async Task<List<ComentariosDTO>> TraerComments(int id)
         {
             var comentarios = await _context.Comentarios.Where(x=>x.IdPublicacion == id).ToListAsync();
-            List<ComentariosViewModel> listcvm = new List<ComentariosViewModel>();
+            List<ComentariosDTO> listcvm = new List<ComentariosDTO>();
             foreach (var com in comentarios)
             {
-                var coment = _mapper.Map<ComentariosViewModel>(com);
+                var coment = _mapper.Map<ComentariosDTO>(com);
                 coment.Usuario = await _usuarioAPIRepo.GetNombreUsuarioById(coment.IdUsuario);
                 var replysIds = _context.Comentarios2.Where(c => c.IdComentarioPadre == coment.IdComentario).
                     Select(s=>s.IdComentarioHijo).ToList();
-                List<ComentariosViewModel> comen2 = new List<ComentariosViewModel>();
+                List<ComentariosDTO> comen2 = new List<ComentariosDTO>();
                 foreach (int ide in replysIds)
                 {
                     var Comentariohijo = await GetByIdAsync(ide);
-                    var comentarito = _mapper.Map<ComentariosViewModel>(Comentariohijo);
+                    var comentarito = _mapper.Map<ComentariosDTO>(Comentariohijo);
                     comentarito.Usuario = await _usuarioAPIRepo.GetNombreUsuarioById(Comentariohijo.IdUsuario);
                     comen2.Add(comentarito);
                 }

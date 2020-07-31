@@ -12,3 +12,5 @@ C:\Users\Liam\source\repos\LimboLand\AutoMap\bin\Debug\netcoreapp2.1\AutoMap.run
 C:\Users\Liam\source\repos\LimboLand\AutoMap\bin\Debug\netcoreapp2.1\DataBase.dll
 C:\Users\Liam\source\repos\LimboLand\AutoMap\bin\Debug\netcoreapp2.1\DataBase.pdb
 C:\Users\Liam\source\repos\LimboLand\AutoMap\obj\Debug\netcoreapp2.1\AutoMap.csproj.CopyComplete
+C:\Users\Liam\source\repos\LimboLand\AutoMap\bin\Debug\netcoreapp2.1\DTO.dll
+C:\Users\Liam\source\repos\LimboLand\AutoMap\bin\Debug\netcoreapp2.1\DTO.pdb

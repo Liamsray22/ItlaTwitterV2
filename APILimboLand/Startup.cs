@@ -36,7 +36,7 @@ namespace APILimboLand
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             //AutoMapper
-            services.AddAutoMapper(typeof(Automapping).GetTypeInfo().Assembly);
+            services.AddAutoMapper(typeof(APIAutomapping).GetTypeInfo().Assembly);
 
             //dataServices
             services.AddDbContext<LIMBODBContext>(options =>

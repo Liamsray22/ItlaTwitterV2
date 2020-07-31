@@ -9,6 +9,7 @@
       "AutoMap/1.0.0": {
         "dependencies": {
           "AutoMapper": "10.0.0",
+          "DTO": "1.0.0",
           "DataBase": "1.0.0",
           "Microsoft.NETCore.App": "2.1.0"
         },
@@ -59,6 +60,14 @@
       "DataBase/1.0.0": {
         "runtime": {
           "DataBase.dll": {}
+        }
+      },
+      "DTO/1.0.0": {
+        "dependencies": {
+          "DataBase": "1.0.0"
+        },
+        "runtime": {
+          "DTO.dll": {}
         }
       }
     }
@@ -140,6 +149,11 @@
       "hashPath": "system.reflection.emit.4.7.0.nupkg.sha512"
     },
     "DataBase/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DTO/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
