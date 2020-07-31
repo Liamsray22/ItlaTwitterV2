@@ -44,7 +44,7 @@ namespace Repository.Repository
         public async Task<PublicacionesViewModel> TraerPubs(int id)
         {
             PublicacionesViewModel pvm = new PublicacionesViewModel();
-            var listapubs = await _context.Publicaciones.Where(x => x.IdUsuario == id).ToListAsync();
+            var listapubs = await _context.Publicaciones.Where(x => x.IdUsuario == id).OrderByDescending(o=>o.Fecha).ToListAsync();
             List<PublicacionesViewModel> list = new List<PublicacionesViewModel>();
             foreach (var p in listapubs)
             {
@@ -187,5 +187,33 @@ namespace Repository.Repository
 
             return true;
         }
+
+
+        public async Task<bool> EliminarPub(int id)
+        {
+            try
+            {
+                var p = await GetByIdAsync(id);
+                if (p.IdImagen != null)
+                {
+                    var img = await _imagenesRepo.GetByIdAsync(p.IdImagen.Value);
+                    _imagenesRepo.Borrar(Path.Combine(Hotin.WebRootPath, img.Ruta));
+                    await _imagenesRepo.DeleteEntity(img);
+
+
+                }
+                await DeleteEntity(p);
+            }
+            catch
+            {
+                return false;
+
+            }
+            return true;
+        }
+
+
+
+
     }
 }

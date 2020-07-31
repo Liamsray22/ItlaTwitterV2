@@ -92,6 +92,12 @@ namespace LimboLand.Controllers
 
         }
 
-
+        public async Task<IActionResult> EliminarPub(int id)
+        {
+            var editar = await _publicacionesRepo.EliminarPub(id);
+            return RedirectToAction("Index");
         }
+
+
+    }
 }
