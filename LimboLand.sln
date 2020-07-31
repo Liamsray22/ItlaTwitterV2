@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoMap", "AutoMap\AutoMap.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmailConfig", "EmailConfig\EmailConfig.csproj", "{514E4B82-8CEE-457A-91DC-DA71684E4251}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APILimboLand", "APILimboLand\APILimboLand.csproj", "{24A31FA1-55A0-4510-B582-C5F9A6E3A8FC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{514E4B82-8CEE-457A-91DC-DA71684E4251}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{514E4B82-8CEE-457A-91DC-DA71684E4251}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{514E4B82-8CEE-457A-91DC-DA71684E4251}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24A31FA1-55A0-4510-B582-C5F9A6E3A8FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24A31FA1-55A0-4510-B582-C5F9A6E3A8FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24A31FA1-55A0-4510-B582-C5F9A6E3A8FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24A31FA1-55A0-4510-B582-C5F9A6E3A8FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
