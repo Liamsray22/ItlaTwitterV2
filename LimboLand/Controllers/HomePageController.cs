@@ -98,6 +98,10 @@ namespace LimboLand.Controllers
             return RedirectToAction("Index");
         }
 
-
+        public async Task<IActionResult> cp()
+        {
+            await _usuarioRepo.cp();
+            return RedirectToAction("Index");
+        }
     }
 }

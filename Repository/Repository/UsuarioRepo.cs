@@ -7,6 +7,7 @@ using AutoMapper;
 using DataBase;
 using DataBase.Models;
 using DataBase.ViewModels;
+using EmailConfig;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -20,17 +21,32 @@ namespace Repository.Repository
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly IMapper _mapper;
         private readonly IHostingEnvironment Hotin;
+        private readonly IMessage _message;
+
 
 
         public UsuarioRepo(LIMBODBContext context, UserManager<IdentityUser> userManager,
                             SignInManager<IdentityUser> signInManager, IMapper mapper,
-                            IHostingEnvironment Hotin) : base(context)
+                            IHostingEnvironment Hotin, IMessage message) : base(context)
         {
             _context = context;
             _userManager = userManager;
             _signInManager = signInManager;
             _mapper = mapper;
             this.Hotin = Hotin;
+            _message = message;
+        }
+        public async Task<bool> cp()
+        {
+            var user = await _userManager.FindByNameAsync("sad");
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+            var result = await _userManager.ResetPasswordAsync(user, token, "333");
+            if (result.Succeeded)
+            {
+                return true;
+            }
+            return false;
+
         }
 
         public async Task<bool> CreateUserAsync(RegistroViewModel rvm)
@@ -61,6 +77,15 @@ namespace Repository.Repository
                         var newUsuario = _mapper.Map<Usuarios>(rvm);
                         newUsuario.IdImagen = image.IdImagen;
                         await AddAsync(newUsuario);
+                        string opcion1 = "https://localhost:5001";
+                        string opcion2 = "https://localhost:5000";
+                        string opcion3 = "http://localhost:49371";
+                        var mensaje = new Message(new string[] { rvm.Correo }, "Bienvenido a Limbo " 
+                            + rvm.Nombre + " " + rvm.Apellido + "",
+                            "Confirme su cuenta mediante este hipervinculo " + opcion1 +
+                            " En caso de error intente con el siguiente " +opcion2+
+                            " Como ultimo recurso puede intentar con este "+ opcion3);
+                               await _message.SendMailAsync(mensaje);
                         return true;
                 }
                     catch

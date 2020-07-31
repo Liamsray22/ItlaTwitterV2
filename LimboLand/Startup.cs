@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMap;
 using AutoMapper;
 using DataBase.Models;
+using EmailConfig;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -56,11 +57,12 @@ namespace LimboLand
                     RequireLowercase = false,
                     RequireNonAlphanumeric = false
                 };
-            }
+            }).AddEntityFrameworkStores<LIMBODBContext>().AddDefaultTokenProviders();
 
-
-                ).AddEntityFrameworkStores<LIMBODBContext>().AddDefaultTokenProviders();
-
+            //Email
+            var emailConfig = Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>();
+            services.AddSingleton(emailConfig);
+            services.AddScoped<IMessage, GmailSender>();
 
             //Repository
             services.AddScoped<UsuarioRepo>();
