@@ -4640,6 +4640,7 @@
         "framework": ".NETCoreApp,Version=v2.1",
         "dependencies": {
           "AutoMapper": "10.0.0",
+          "DTO": "1.0.0",
           "DataBase": "1.0.0",
           "Microsoft.AspNetCore.App": "2.1.1",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "2.1.1"

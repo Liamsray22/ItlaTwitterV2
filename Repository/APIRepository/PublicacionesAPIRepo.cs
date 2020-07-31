@@ -17,8 +17,6 @@ namespace Repository.Repository
     public class PublicacionesAPIRepo : RepositoryBase<Publicaciones, LIMBODBContext>
     {
         private readonly LIMBODBContext _context;
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UsuarioAPIRepo _usuarioAPIRepo;
         private readonly ComentariosAPIRepo _comentariosAPIRepo;
         private readonly IMapper _mapper;

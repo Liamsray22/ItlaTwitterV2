@@ -42,19 +42,20 @@ namespace APILimboLand
             services.AddDbContext<LIMBODBContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("Default")));
 
-            ////Identity            
-            //services.AddIdentity<IdentityUser, IdentityRole>(options => {
-            //    options.Password = new PasswordOptions
-            //    {
-            //        RequireDigit = true,
-            //        RequiredLength = 3,
-            //        RequireUppercase = false,
-            //        RequireLowercase = false,
-            //        RequireNonAlphanumeric = false
-            //    };
-            //}).AddEntityFrameworkStores<LIMBODBContext>().AddDefaultTokenProviders();
+            //Identity            
+            services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            {
+                options.Password = new PasswordOptions
+                {
+                    RequireDigit = true,
+                    RequiredLength = 3,
+                    RequireUppercase = false,
+                    RequireLowercase = false,
+                    RequireNonAlphanumeric = false
+                };
+            }).AddEntityFrameworkStores<LIMBODBContext>().AddDefaultTokenProviders();
 
-            
+
 
             //Repository
             services.AddScoped<PublicacionesAPIRepo>();

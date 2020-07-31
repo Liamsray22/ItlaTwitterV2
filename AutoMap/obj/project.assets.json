@@ -4354,6 +4354,19 @@
         "runtime": {
           "bin/placeholder/DataBase.dll": {}
         }
+      },
+      "DTO/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.1",
+        "dependencies": {
+          "DataBase": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/DTO.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DTO.dll": {}
+        }
       }
     }
   },
@@ -11915,11 +11928,17 @@
       "type": "project",
       "path": "../DataBase/DataBase.csproj",
       "msbuildProject": "../DataBase/DataBase.csproj"
+    },
+    "DTO/1.0.0": {
+      "type": "project",
+      "path": "../DTO/DTO.csproj",
+      "msbuildProject": "../DTO/DTO.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
       "AutoMapper >= 10.0.0",
+      "DTO >= 1.0.0",
       "DataBase >= 1.0.0",
       "Microsoft.AspNetCore.App >= 2.1.1",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 2.1.1",
@@ -11958,6 +11977,9 @@
           "projectReferences": {
             "C:\\Users\\Liam\\source\\repos\\LimboLand\\DataBase\\DataBase.csproj": {
               "projectPath": "C:\\Users\\Liam\\source\\repos\\LimboLand\\DataBase\\DataBase.csproj"
+            },
+            "C:\\Users\\Liam\\source\\repos\\LimboLand\\DTO\\DTO.csproj": {
+              "projectPath": "C:\\Users\\Liam\\source\\repos\\LimboLand\\DTO\\DTO.csproj"
             }
           }
         }
