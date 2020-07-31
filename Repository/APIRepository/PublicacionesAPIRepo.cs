@@ -40,10 +40,8 @@ namespace Repository.Repository
 
             List<PublicacionesDTO> list = new List<PublicacionesDTO>();
 
-            //PublicacionesDTO pvm = new PublicacionesDTO();
             var user = await _usuarioAPIRepo.GetUsuarioByName(name);
             var listapubs = await _context.Publicaciones.Where(x => x.IdUsuario == user.IdUsuarios).OrderByDescending(o => o.Fecha).ToListAsync();
-            //List<PublicacionesDTO> list = new List<PublicacionesDTO>();
             foreach (var p in listapubs)
             {
                 var pv = _mapper.Map<PublicacionesDTO>(p);
@@ -55,15 +53,26 @@ namespace Repository.Repository
                 pv.Usuario = await _usuarioAPIRepo.GetNombreUsuarioById(pv.IdUsuario);
                 pv.comentarios = await _comentariosAPIRepo.TraerComments(p.IdPublicacion);
                 list.Add(pv);
-            }
-            //pvm.publicaciones = list;
-            //pvm.IdUsuario = user.IdUsuarios;
-            //pvm.Usuario = await _usuarioAPIRepo.GetNombreUsuarioById(user.IdUsuarios);
-            //var usu = await _usuarioAPIRepo.GetUsuarioByName(pvm.Usuario);
-            ////var im = await _imagenesRepo.GetByIdAsync(usu.IdImagen.Value);
-            //pvm.Imagen = "im.Ruta";
+            }           
             return list;
 
+        }
+
+        public async Task<bool> Publicar(PublicarDTO publicar)
+        {
+            var confirm = await _usuarioAPIRepo.Login(publicar.Usuario, publicar.Clave);
+            if (confirm)
+            {
+                var user = await _usuarioAPIRepo.GetUsuarioByName(publicar.Usuario);
+
+                Publicaciones publicacion = new Publicaciones();
+                publicacion.IdUsuario = user.IdUsuarios;
+                publicacion.Publicacion = publicar.Publicacion;
+                await AddAsync(publicacion);
+                return true;
+
+            }
+            return false;
         }
 
         //public async Task<PublicacionesDTO> TraerPubById(int id)

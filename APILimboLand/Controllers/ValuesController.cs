@@ -55,8 +55,18 @@ namespace APILimboLand.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        [Route("Publicar")]
+        public async Task<IActionResult> Publicar(PublicarDTO publicar)
         {
+            if (ModelState.IsValid)
+            {
+                var publi = await _publicacionesAPIRepo.Publicar(publicar);
+                if (publi)
+                {
+                    return NoContent();
+                }
+            }
+            return StatusCode(500);
         }
 
         // PUT api/values/5

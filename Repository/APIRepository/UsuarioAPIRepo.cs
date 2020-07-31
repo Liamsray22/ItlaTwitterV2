@@ -18,18 +18,18 @@ namespace Repository.Repository
     {
         private readonly LIMBODBContext _context;
         //private readonly UserManager<IdentityUser> _userManager;
-        //private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
         //private readonly IMapper _mapper;
         //private readonly IHostingEnvironment Hotin;
         //private readonly IMessage _message;
 
 
 
-        public UsuarioAPIRepo(LIMBODBContext context) : base(context)
+        public UsuarioAPIRepo(LIMBODBContext context, SignInManager<IdentityUser> signInManager) : base(context)
         {
             _context = context;
             //_userManager = userManager;
-            //_signInManager = signInManager;
+            _signInManager = signInManager;
             //_mapper = mapper;
             //this.Hotin = Hotin;
             //_message = message;
@@ -92,21 +92,23 @@ namespace Repository.Repository
         //        }
         //    }
         //        return false;
-                
+
         //    }
         //    return false;
         //}
 
-        //public async Task<bool> Login(LoginViewModel lvm)
-        //{
+        public async Task<bool> Login(string Usuario, string Clave)
+        {
 
-        //    var result = await _signInManager.PasswordSignInAsync(lvm.Usuario, lvm.Clave, false, true);
+            var result = await _signInManager.PasswordSignInAsync(Usuario, Clave, false, true);
 
-        //    if (result.Succeeded)
-        //    {
-        //        return true;
+            if (result.Succeeded)
+            {
+                return true;
 
-        //    }
+            }
+            return false;
+        }
 
             
 
