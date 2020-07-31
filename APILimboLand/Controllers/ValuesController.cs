@@ -29,8 +29,8 @@ namespace APILimboLand.Controllers
         }
         //Obtener Publicaciones por el nombre de usuario
         [HttpGet]
-        [Route("GetBPubsyUsername/{username}")]
-        public async Task< ActionResult<List<PublicacionesDTO>>> GetBPubsyUsername(string username)
+        [Route("GetPubsByUsername/{username}")]
+        public async Task< ActionResult<List<PublicacionesDTO>>> GetPubsByUsername(string username)
         {
             if (username != null || username != "") {
                 var Pubs = await _publicacionesAPIRepo.TraerPubsByName(username);
@@ -53,6 +53,24 @@ namespace APILimboLand.Controllers
             return NotFound();
         }
 
+        [HttpGet]
+        [Route("GetPubsMoreComments/{id}")]
+        public async Task<ActionResult<PublicacionesDTO>> GetPubsMoreComments(int? id)
+        {
+            if (id != null)
+            {
+                var Pubs = await _publicacionesAPIRepo.TraerPubsMoreComments(id.Value);
+                if (Pubs != null)
+                {
+                    return Pubs;
+                }
+                return StatusCode(500);
+
+            }
+            return NotFound();
+        }
+
+
         // POST api/values
         [HttpPost]
         [Route("Publicar")]
@@ -69,6 +87,7 @@ namespace APILimboLand.Controllers
             return StatusCode(500);
         }
 
+       
         // PUT api/values/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)

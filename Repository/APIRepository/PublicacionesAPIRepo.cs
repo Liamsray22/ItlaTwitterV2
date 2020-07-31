@@ -58,6 +58,42 @@ namespace Repository.Repository
 
         }
 
+        public async Task<PublicacionesDTO> TraerPubsMoreComments(int id)
+        {
+
+            var listaIdspubs =  await _context.Publicaciones.Where(x => x.IdUsuario == id)
+                .OrderByDescending(o => o.Fecha).Select(s=>s.IdPublicacion).ToListAsync();
+            int valorMasAlto = 0;
+            int IdPubMoreComments = 0;
+            foreach (var idPub in listaIdspubs)
+            {
+                var valor = _context.Comentarios.Where(w=>w.IdPublicacion == idPub).Count();
+                if (valor > valorMasAlto)
+                {
+                     IdPubMoreComments = idPub;
+                    valorMasAlto = valor;
+                }                
+            }
+            if (IdPubMoreComments !=0) {
+                var publ = await GetByIdAsync(IdPubMoreComments);
+                if (publ.Publicacion == null) {
+                    return null;
+                }
+                var pv = _mapper.Map<PublicacionesDTO>(publ);
+                if (publ.IdImagen != null)
+                {
+                    var img = await _imagenesAPIRepo.GetByIdAsync(publ.IdImagen.Value);
+                    pv.Imagen = img.Ruta;
+                }
+                pv.Usuario = await _usuarioAPIRepo.GetNombreUsuarioById(pv.IdUsuario);
+                pv.comentarios = await _comentariosAPIRepo.TraerComments(publ.IdPublicacion);
+                //list.Add(pv);
+                return pv;
+            }
+            return null;
+
+        }
+
         public async Task<bool> Publicar(PublicarDTO publicar)
         {
             var confirm = await _usuarioAPIRepo.Login(publicar.Usuario, publicar.Clave);
