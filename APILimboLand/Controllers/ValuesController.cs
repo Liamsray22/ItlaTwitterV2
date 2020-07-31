@@ -13,9 +13,12 @@ namespace APILimboLand.Controllers
     public class ValuesController : ControllerBase
     {
         public readonly PublicacionesAPIRepo _publicacionesAPIRepo;
-        public ValuesController(PublicacionesAPIRepo publicacionesAPIRepo)
+        public readonly AmigosAPIRepo _amigosAPIRepo;
+
+        public ValuesController(PublicacionesAPIRepo publicacionesAPIRepo, AmigosAPIRepo amigosAPIRepo)
         {
             _publicacionesAPIRepo = publicacionesAPIRepo;
+            _amigosAPIRepo = amigosAPIRepo;
         }
 
         // GET api/values
@@ -39,12 +42,12 @@ namespace APILimboLand.Controllers
 
         [HttpGet]
         [Route("GetFriendListByUsername/{username}")]
-        public async Task<ActionResult<List<PublicacionesDTO>>> GetFriendListByUsername(string username)
+        public async Task<ActionResult<List<ListaAmigosDTO>>> GetFriendListByUsername(string username)
         {
             if (username != null || username != "")
             {
-                var Pubs = await _publicacionesAPIRepo.TraerPubsByName(username);
-                return Pubs;
+                var Friends = await _amigosAPIRepo.TraerListaAmigos(username);
+                return Friends;
 
             }
             return NotFound();

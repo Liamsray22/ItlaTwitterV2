@@ -38,7 +38,7 @@ namespace AutoMap
 
         private void MapearAmigos()
         {
-            CreateMap<Usuarios, ListaAmigosViewModel>().ReverseMap()
+            CreateMap<Usuarios, ListaAmigosDTO>().ReverseMap()
             .ForMember(dest => dest.Telefono, opt => opt.Ignore())
             .ForMember(dest => dest.Correo, opt => opt.Ignore())
             .ForMember(dest => dest.Activo, opt => opt.Ignore())
