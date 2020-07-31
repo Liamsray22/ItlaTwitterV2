@@ -19,23 +19,29 @@ namespace APILimboLand.Controllers
         {
             _publicacionesAPIRepo = publicacionesAPIRepo;
             _amigosAPIRepo = amigosAPIRepo;
-        }
+        } 
 
-        
         //Obtener Publicaciones por el nombre de usuario
+        #region GetPubsByUsername
         [HttpGet]
         [Route("GetPubsByUsername/{username}")]
         public async Task< ActionResult<List<PublicacionesDTO>>> GetPubsByUsername(string username)
         {
             if (username != null || username != "") {
                 var Pubs = await _publicacionesAPIRepo.TraerPubsByName(username);
-                return Pubs;
-
+                if (Pubs != null)
+                {
+                    return Pubs;
+                }
             }
             return NotFound();
         }
+        #endregion
+
+
 
         //Obtener Lista de Amigos mediante el nombre de usuario
+        #region GetFriendListByUsername
         [HttpGet]
         [Route("GetFriendListByUsername/{username}")]
         public async Task<ActionResult<List<ListaAmigosDTO>>> GetFriendListByUsername(string username)
@@ -48,8 +54,12 @@ namespace APILimboLand.Controllers
             }
             return NotFound();
         }
+        #endregion
+
+
 
         //Obtener Publicaciones con mas comentarios
+        #region GetPubsMoreComments
         [HttpGet]
         [Route("GetPubsMoreComments/{id}")]
         public async Task<ActionResult<PublicacionesDTO>> GetPubsMoreComments(int? id)
@@ -61,29 +71,17 @@ namespace APILimboLand.Controllers
                 {
                     return Pubs;
                 }
-                return StatusCode(500);
+                return NotFound();
 
             }
             return NotFound();
         }
+        #endregion
 
 
-        [HttpPost]
-        [Route("AgregarAmigos/{id}")]
-        public async Task<IActionResult> AgregarAmigos(AgregarAmigosDTO agregar, int id)
-        {
-            if (ModelState.IsValid)
-            {
-                var friend = await _amigosAPIRepo.AgregarAmigos(agregar, id);
-                if (friend)
-                {
-                    return NoContent();
-                }
-            }
-            return StatusCode(500);
-        }
 
         // Publicar
+        #region Publicar
         [HttpPost]
         [Route("Publicar")]
         public async Task<IActionResult> Publicar(PublicarDTO publicar)
@@ -98,18 +96,26 @@ namespace APILimboLand.Controllers
             }
             return StatusCode(500);
         }
+        #endregion
 
-       
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+
+        //Agregar Amigoss
+        #region AgregarAmigos
+        [HttpPost]
+        [Route("AgregarAmigos/{id}")]
+        public async Task<IActionResult> AgregarAmigos(AgregarAmigosDTO agregar, int id)
         {
+            if (ModelState.IsValid)
+            {
+                var friend = await _amigosAPIRepo.AgregarAmigos(agregar, id);
+                if (friend)
+                {
+                    return NoContent();
+                }
+            }
+            return StatusCode(500);
         }
+        #endregion
     }
 }
