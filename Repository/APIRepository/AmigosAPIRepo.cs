@@ -59,24 +59,36 @@ namespace Repository.Repository
         //    return listaAmigos;
         //}
 
-        //public async Task AgregarAmigos(int IdUsuario, int IdAmigo)
-        //{
-        //    try
-        //    {
-        //        Amigos ad = new Amigos();
-        //        ad.IdUsuario = IdUsuario;
-        //        ad.IdAmigo = IdAmigo;
-        //        await AddAsync(ad);
-        //        ad.IdUsuario = IdAmigo;
-        //        ad.IdAmigo = IdUsuario;
-        //        await AddAsync(ad);
-        //    }
-        //    catch
-        //    {
+        public async Task<bool> AgregarAmigos(AgregarAmigosDTO agg, int id)
+        {
+            var log =await _usuarioAPIRepo.Login(agg.Usuario, agg.Clave);
+            if (log) {
+                try
+                {
+                    var user = await _usuarioAPIRepo.GetUsuarioByName(agg.Usuario);
+                    var pana = await _usuarioAPIRepo.GetUsuarioByName(agg.Usuario);
+                    if (pana == null) {
+                        return false;
+                    }
+                    Amigos ad = new Amigos();
+                    ad.IdUsuario = user.IdUsuarios;
+                    ad.IdAmigo = id;
+                    await AddAsync(ad);
+                    ad.IdUsuario = id;
+                    ad.IdAmigo = user.IdUsuarios;
+                    await AddAsync(ad);
+                    return true;
+                }
+                catch
+                {
+                    return false;
 
-        //    }
+                }
+            }
+            return false;
 
-        //}
+
+        }
 
         //public async Task BorrarAmigos(int IdUsuario, int IdAmigo)
         //{

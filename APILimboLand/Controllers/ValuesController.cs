@@ -21,12 +21,7 @@ namespace APILimboLand.Controllers
             _amigosAPIRepo = amigosAPIRepo;
         }
 
-        // GET api/values
-        [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+        
         //Obtener Publicaciones por el nombre de usuario
         [HttpGet]
         [Route("GetPubsByUsername/{username}")]
@@ -40,6 +35,7 @@ namespace APILimboLand.Controllers
             return NotFound();
         }
 
+        //Obtener Lista de Amigos mediante el nombre de usuario
         [HttpGet]
         [Route("GetFriendListByUsername/{username}")]
         public async Task<ActionResult<List<ListaAmigosDTO>>> GetFriendListByUsername(string username)
@@ -53,6 +49,7 @@ namespace APILimboLand.Controllers
             return NotFound();
         }
 
+        //Obtener Publicaciones con mas comentarios
         [HttpGet]
         [Route("GetPubsMoreComments/{id}")]
         public async Task<ActionResult<PublicacionesDTO>> GetPubsMoreComments(int? id)
@@ -71,7 +68,22 @@ namespace APILimboLand.Controllers
         }
 
 
-        // POST api/values
+        [HttpPost]
+        [Route("AgregarAmigos/{id}")]
+        public async Task<IActionResult> AgregarAmigos(AgregarAmigosDTO agregar, int id)
+        {
+            if (ModelState.IsValid)
+            {
+                var friend = await _amigosAPIRepo.AgregarAmigos(agregar, id);
+                if (friend)
+                {
+                    return NoContent();
+                }
+            }
+            return StatusCode(500);
+        }
+
+        // Publicar
         [HttpPost]
         [Route("Publicar")]
         public async Task<IActionResult> Publicar(PublicarDTO publicar)
