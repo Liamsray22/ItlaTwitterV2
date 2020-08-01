@@ -106,7 +106,7 @@ WriteAttributeValue("", 302, Model.Imagen, 302, 13, false);
                 ");
             EndContext();
             BeginContext(1128, 1395, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6bcdf579f5744e8fa1d99f31c8fbfb5c", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d6438a982bf344bc9e931c7bc848d9a7", async() => {
                 BeginContext(1209, 331, true);
                 WriteLiteral(@"
 
@@ -117,7 +117,7 @@ WriteAttributeValue("", 302, Model.Imagen, 302, 13, false);
                                     ");
                 EndContext();
                 BeginContext(1540, 86, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "2735197dfe5d481cb9168aeef73f6344", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "6cea535ad9c44280b63d9adceb1923fc", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -152,7 +152,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 WriteLiteral("\r\n                                    <label class=\"sr-only\" for=\"message\">post</label>\r\n                                    ");
                 EndContext();
                 BeginContext(1751, 116, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("textarea", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8e0cd4b358cb4f4f8cd79df2a498b973", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("textarea", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a4b13fb3d7724b2d8a0214f490cb1ac2", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_TextAreaTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.TextAreaTagHelper>();
@@ -181,7 +181,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_TextAreaTagHelper.For = ModelExpressionPro
                 WriteLiteral("\r\n                                    <label class=\"sr-only\" for=\"message\">Sube una imagen</label>\r\n                                    ");
                 EndContext();
                 BeginContext(2003, 44, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "0e63de94cd674a3798a9fc26e68818ec", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "4cdcba2eeb89463ea764761dfeda7bdb", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -276,7 +276,7 @@ WriteAttributeValue("", 2968, publi.ImagenUser, 2968, 17, false);
             WriteLiteral("\r\n                    </div>\r\n                </div>\r\n\r\n\r\n            </div>\r\n            <div class=\"btn-group dropleft\">\r\n                ");
             EndContext();
             BeginContext(3251, 114, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "112d983d81ab437db777ebb532bd3c79", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "aad267bc1aa0451994ddc241f3d04246", async() => {
                 BeginContext(3315, 46, true);
                 WriteLiteral("<i class=\"fa fa-pencil\"></i>Editar Publicacion");
                 EndContext();
@@ -345,7 +345,7 @@ WriteAttributeValue("", 3608, publi.IdPublicacion, 3608, 22, false);
             WriteLiteral("t-2 d-flex justify-content-center\">\r\n                                    ");
             EndContext();
             BeginContext(4728, 207, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1dbef917266b4d9cb2f40eccde180572", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0ca25976d6cc485d9f4b341ec8ed102e", async() => {
                 BeginContext(4835, 96, true);
                 WriteLiteral("<i class=\"fa fa-times-circle\" style=\"font-size:14px; color:red\" aria-hidden=\"true\"></i> Eliminar");
                 EndContext();
@@ -461,7 +461,7 @@ WriteAttributeValue("", 5966, publi.IdPublicacion, 5966, 22, false);
             WriteLiteral(">\r\n            ");
             EndContext();
             BeginContext(6004, 418, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a1706aa6656d453b93de90d4e124c880", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "87e6597c5b784510b16404527b26a4a7", async() => {
                 BeginContext(6046, 111, true);
                 WriteLiteral("\r\n                <input type=\"text\" class=\"form-control\" name=\"Comentario\" required />\r\n                <input");
                 EndContext();
@@ -569,7 +569,7 @@ WriteAttributeValue("", 7430, comentario.IdComentario, 7430, 26, false);
             WriteLiteral(">\r\n                    ");
             EndContext();
             BeginContext(7480, 468, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2a64df934e1f428daf86bfaf27b724ba", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d1772dd09356445da5a9e5ef3a97f6ba", async() => {
                 BeginContext(7523, 127, true);
                 WriteLiteral("\r\n                        <input type=\"text\" class=\"form-control\" name=\"Comentario\" required />\r\n                        <input");
                 EndContext();

@@ -60,6 +60,10 @@ namespace LimboLand.Controllers
         #region registro
         public IActionResult Registro()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "HomePage");
+            }
             return View();
         }
         [HttpPost]
@@ -99,7 +103,11 @@ namespace LimboLand.Controllers
         #region ActivarUsuario
         public async Task<IActionResult> ActivarUsuario(int? id)
         {
-            if(id == null)
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "HomePage");
+            }
+            if (id == null)
             {
                 return RedirectToAction("Index");
 
@@ -114,9 +122,13 @@ namespace LimboLand.Controllers
 
         #region RecuperarPass
 
-        public async Task<IActionResult> RecuperarPass(string User)
+        public async Task<IActionResult> RecuperarPass(string user)
         {
-            var rec = await _usuarioRepo.RecuperarPass(User);
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "HomePage");
+            }
+            var rec = await _usuarioRepo.RecuperarPass(user);
             if (rec)
             {
                 return RedirectToAction("Confirmacioncl");
@@ -135,15 +147,27 @@ namespace LimboLand.Controllers
         #region Confirmaciones
         public IActionResult Confirmacioncl()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "HomePage");
+            }
             return View();
         }
 
         public IActionResult Confirmacion()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "HomePage");
+            }
             return View();
         }
         public IActionResult ConfirmacionS()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "HomePage");
+            }
             return View();
         }
 #endregion

@@ -217,6 +217,41 @@ namespace Repository.Repository
                     await _imagenesRepo.DeleteEntity(img);
                 }
                 await DeleteEntity(p);
+
+                var listcom = await _comentariosRepo.TraerComments(id);
+
+                
+                foreach(var com in listcom)
+                {
+                    try
+                    {
+                        foreach (var minicom in com.comentarios2)
+                        {
+                            Comentarios2 rel = new Comentarios2();
+                            rel.IdComentarioHijo = minicom.IdComentario;
+                            rel.IdComentarioPadre = com.IdComentario;
+                            try
+                            {
+                                _context.Comentarios2.Remove(rel);
+                                await _context.SaveChangesAsync();
+                            }
+                            catch
+                            {
+
+                            }
+                            var comentarito = await _comentariosRepo.GetByIdAsync(minicom.IdComentario); ;
+                            await _comentariosRepo.DeleteEntity(comentarito);
+                        }
+                        
+                    }
+                    catch { }
+                        var c = await _comentariosRepo.GetByIdAsync(com.IdComentario);
+                        await _comentariosRepo.DeleteEntity(c);
+
+
+
+                }
+
             }
             catch
             {

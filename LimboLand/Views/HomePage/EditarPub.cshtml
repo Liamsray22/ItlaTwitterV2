@@ -1,4 +1,9 @@
 ﻿@model DataBase.ViewModels.PublicacionesViewModel
+
+
+
+
+
 <div class="container-fluid gedf-wrapper">
     <div class="row">
         <div class="col-md-3">
@@ -31,15 +36,17 @@
                                     <input type="text" asp-for="IdUsuario" value="@Model.IdUsuario" style="display:none;">
                                     <label class="sr-only" for="message">post</label>
                                     <textarea asp-for="Publicacion" class="form-control" rows="3" placeholder="Que estas pensando?" required></textarea>
-                                    <label class="sr-only" for="message">Cambiar imagen</label>
-                                    <input asp-for="FotoPub" accept="image/*" />
+
                                 </div>
                                 @if (Model.Imagen != null)
                                 {
+
+                                    <label class="sr-only" for="message">Cambiar imagen</label>
+                                    <input asp-for="FotoPub" accept="image/*" id="file-upload"/>
                                     <center>
                                         <div class="card-body">
                                             <a class="card-link" href="#">
-                                                <img src="~/@(Model.Imagen)" width="100%" height="500px" />
+                                                <img src="~/@(Model.Imagen)" id="file-preview" width="100%" height="500px" />
                                             </a>
                                         </div>
                                     </center>
@@ -58,3 +65,22 @@
         </div>
     </div>
 </div>
+<script>
+    function readFile(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var filePreview = document.getElementById('file-preview');
+
+                filePreview.src = e.target.result;
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    var fileUpload = document.getElementById('file-upload');
+    fileUpload.onchange = function (e) {
+        readFile(e.srcElement);
+    }
+</script>
