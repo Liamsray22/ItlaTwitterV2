@@ -43,22 +43,22 @@ namespace Repository.Repository
 
 
         //Agregar Amigos
-        public async Task<bool> AgregarAmigos(AgregarAmigosDTO agg, int id)
+        public async Task<bool> AgregarAmigos(AgregarAmigosDTO agg, string amigo)
         {
             var log =await _usuarioAPIRepo.Login(agg.Usuario, agg.Clave);
             if (log) {
                 try
                 {
                     var user = await _usuarioAPIRepo.GetUsuarioByName(agg.Usuario);
-                    var pana = await _usuarioAPIRepo.GetUsuarioByName(agg.Usuario);
+                    var pana = await _usuarioAPIRepo.GetUsuarioByName(amigo);
                     if (pana == null) {
                         return false;
                     }
                     Amigos ad = new Amigos();
                     ad.IdUsuario = user.IdUsuarios;
-                    ad.IdAmigo = id;
+                    ad.IdAmigo = pana.IdUsuarios;
                     await AddAsync(ad);
-                    ad.IdUsuario = id;
+                    ad.IdUsuario = pana.IdUsuarios;
                     ad.IdAmigo = user.IdUsuarios;
                     await AddAsync(ad);
                     return true;

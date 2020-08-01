@@ -16,6 +16,7 @@ namespace DataBase.ViewModels
         public string Publicacion { get; set; }
         public DateTime? Fecha { get; set; }
         public string Imagen { get; set; }
+        public string ImagenUser { get; set; }
         public IFormFile FotoPub { get; set; }
 
         public string Usuario { get; set; }

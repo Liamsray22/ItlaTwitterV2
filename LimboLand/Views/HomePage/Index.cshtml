@@ -79,7 +79,11 @@
             <div class="d-flex justify-content-between ">
 
                 <div class="ml-2">
-                    <div class="h3 m-0">@Html.DisplayFor(ModelItem => publi.Usuario)</div>
+                    <div class="h3 m-0">
+                        <img src="@publi.ImagenUser" height="40px" width="40px" class="rounded-circle" />
+
+                        @Html.DisplayFor(ModelItem => publi.Usuario)
+                    </div>
                 </div>
 
 
@@ -154,7 +158,10 @@
         {
             <div class="comentarios" style="background-color: rgba(0,0,0,.03); border-bottom:2px solid; border-color:#e9ebee;">
                 <div class="user-post-info">
-                    <h4><b>@Html.DisplayFor(ModelItem => comentario.Usuario)</b></h4>
+                    <h4><b><img src="@comentario.ImagenUser" height="40px" width="40px" class="rounded-circle" />
+
+    @Html.DisplayFor(ModelItem => comentario.Usuario)
+</b></h4>
                     <b><i class="fa fa-comments"></i>Comento:</b>
                     @Html.DisplayFor(ModelItem => comentario.Comentario)
                     <br>
@@ -183,6 +190,7 @@
                 <div class="comentarios" style="background-color: rgba(0,0,0,.03);
                     border-bottom:2px solid; border-color:#e9ebee;">
                     <div class="user-post-info">
+                        <img src="@replys.ImagenUser" height="40px" width="40px" class="rounded-circle" />
                         <h4 style=" margin-left:30px;"><b>@Html.DisplayFor(ModelItem => replys.Usuario)</b></h4>
                         <span style=" margin-left:30px;">
 

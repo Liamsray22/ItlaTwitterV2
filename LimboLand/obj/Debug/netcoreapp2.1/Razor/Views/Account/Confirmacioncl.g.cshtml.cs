@@ -53,7 +53,7 @@ using DataBase;
 #line default
 #line hidden
             BeginContext(27, 1135, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5430eb1ec6e149cfaa63f86e1209ac75", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0d2a101fee6843d9ac08d3c7c4824479", async() => {
                 BeginContext(33, 1122, true);
                 WriteLiteral(@"
     <link rel=""stylesheet"" href=""https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"" integrity=""sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"" crossorigin=""anonymous"">
@@ -82,7 +82,7 @@ using DataBase;
             WriteLiteral("\r\n\r\n\r\n<div class=\"alert alert-success\" role=\"alert\">\r\n    <h1>Recuperar clave</h1>\r\n    Hemos enviado su nueva clave a su email.\r\n    ");
             EndContext();
             BeginContext(1296, 32, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e11a89a787304fa6a6ebaa3368d094c7", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c55276a02b4f4531aa7fe8635532d907", async() => {
                 BeginContext(1318, 6, true);
                 WriteLiteral("Volver");
                 EndContext();

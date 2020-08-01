@@ -36,18 +36,7 @@ namespace Repository.Repository
             this.Hotin = Hotin;
             _message = message;
         }
-        public async Task<bool> cp()
-        {
-            var user = await _userManager.FindByNameAsync("sad");
-            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
-            var result = await _userManager.ResetPasswordAsync(user, token, "333");
-            if (result.Succeeded)
-            {
-                return true;
-            }
-            return false;
-
-        }
+       
 
         public async Task<bool> CreateUserAsync(RegistroViewModel rvm)
         {
@@ -99,47 +88,37 @@ namespace Repository.Repository
             return false;
         }
 
-        public async Task<bool> Login(LoginViewModel lvm)
+        public async Task<int> Login(LoginViewModel lvm)
         {
-
-            var result = await _signInManager.PasswordSignInAsync(lvm.Usuario, lvm.Clave, false, true);
-
-            if (result.Succeeded)
+            var usu = await GetUsuarioByName(lvm.Usuario);
+            if (usu != null)
             {
-                return true;
+                if (usu.Activo != 0)
+                {
+                    var result = await _signInManager.PasswordSignInAsync(lvm.Usuario, lvm.Clave, false, true);
 
+                    if (result.Succeeded)
+                    {
+                        return 2;
+
+                    }
+                }
+                else
+                {
+                    string opcion1 = "https://localhost:5001/Account/ActivarUsuario/" + usu.IdUsuarios + "";
+                    string opcion2 = "https://localhost:5000/Account/ActivarUsuario/" + usu.IdUsuarios + "";
+                    string opcion3 = "http://localhost:49371/Account/ActivarUsuario/" + usu.IdUsuarios + "";
+                    var mensaje = new Message(new string[] { usu.Correo }, "Bienvenido a Limbo "
+                        + usu.Nombre + " " + usu.Apellido + "",
+                        "Confirme su cuenta mediante este hipervinculo " + opcion1 +
+                        " En caso de error intente con el siguiente " + opcion2 +
+                        " Como ultimo recurso puede intentar con este " + opcion3);
+                    await _message.SendMailAsync(mensaje);
+                    return 4;
+                }
             }
-
             
-
-            //var User = _mapper.Map<Usuarios>(loginViewModel);
-            //var user = await _context.Usuarios.FirstOrDefaultAsync(x => x.Usuario == User.Usuario &&
-            //x.Clave == User.Clave);
-
-            //if (user != null)
-            //{
-            //    if (user.Activo != 0)
-            //    {
-            //        HttpContext.Session.SetString("SessionUser", JsonConvert.SerializeObject(user));
-
-
-            //        return RedirectToAction("Home", "Social", user);
-            //    }
-            //    else
-            //    {
-            //        Random r = new Random();
-            //        int codigo = r.Next(1000, 9999);
-            //        var mensaje = new Message(new string[] { user.Correo }, "Bienvenido a Limbo " + user.Nombre + " " + user.Apellido + "", "Confirme su cuenta mediante este codigo " + codigo);
-            //        await _message.SendMailAsync(mensaje);
-            //        HttpContext.Session.SetString("codigo", codigo.ToString());
-            //        HttpContext.Session.SetString("id", user.IdUsuarios.ToString());
-
-
-
-            //        return RedirectToAction("Confirmacion", "Home");
-            //    }
-            //}
-            return false;
+            return 3;
         }
 
 
@@ -161,8 +140,44 @@ namespace Repository.Repository
         public async Task ActivarUsuario(int id)
         {
             var user = await GetByIdAsync(id);
-            user.Activo = 1;
-            await Update(user);
+            if (user == null)
+            {
+
+            }
+            else
+            {
+                user.Activo = 1;
+                await Update(user);
+            }
+        }
+
+        public async Task<bool> RecuperarPass(string username)
+        {
+            var user = await _userManager.FindByNameAsync(username);
+            if (user != null)
+            {
+                var usu = await GetUsuarioByName(username);
+                var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+                Random r = new Random();
+                int codigo = r.Next(10000000, 99999999);
+                usu.Clave = ""+codigo;
+                await Update(usu);
+                var result = await _userManager.ResetPasswordAsync(user, token, ""+codigo);
+                if (result.Succeeded)
+                {
+                    var mensaje = new Message(new string[] { user.Email }, "Saludos "
+                            + user.UserName +" ",
+                            "Su nueva clave es: " + codigo +
+                            " " );
+                    await _message.SendMailAsync(mensaje);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return false;
         }
     }
 }

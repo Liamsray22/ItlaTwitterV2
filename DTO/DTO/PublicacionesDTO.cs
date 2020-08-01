@@ -12,18 +12,10 @@ namespace DTO.DTO
     {
         public int? IdUsuario { get; set; }
         public int IdPublicacion { get; set; }
-        //[Required]
         public string Publicacion { get; set; }
         public DateTime? Fecha { get; set; }
         public string Imagen { get; set; }
-        //public IFormFile FotoPub { get; set; }
-
         public string Usuario { get; set; }
-        //public int CantidadAmigos { get; set; }
-
-
-        //public IEnumerable<PublicacionesDTO> publicaciones;
-
         public IEnumerable<ComentariosDTO> comentarios { get; set; }
     }
 }

@@ -103,12 +103,12 @@ namespace APILimboLand.Controllers
         //Agregar Amigoss
         #region AgregarAmigos
         [HttpPost]
-        [Route("AgregarAmigos/{id}")]
-        public async Task<IActionResult> AgregarAmigos(AgregarAmigosDTO agregar, int id)
+        [Route("AgregarAmigos/{amigo}")]
+        public async Task<IActionResult> AgregarAmigos(AgregarAmigosDTO agregar, string amigo)
         {
             if (ModelState.IsValid)
             {
-                var friend = await _amigosAPIRepo.AgregarAmigos(agregar, id);
+                var friend = await _amigosAPIRepo.AgregarAmigos(agregar, amigo);
                 if (friend)
                 {
                     return NoContent();

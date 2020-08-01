@@ -13,6 +13,7 @@ namespace DataBase.ViewModels
         public string Comentario { get; set; }
         public int? IdUsuario { get; set; }
         public string Usuario { get; set; }
+        public string ImagenUser { get; set; }
         public int Manda { get; set; }
         public IEnumerable<ComentariosViewModel> comentarios2 { get; set; }
         

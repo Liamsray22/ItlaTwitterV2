@@ -13,7 +13,9 @@
         foreach (var Persona in Model)
         {
         <div class="border-card">
-            <div class="card-type-icon with-border">@Html.DisplayFor(ModelItem => Persona.IdUsuarios)</div>
+            <div class="card-type-icon with-border">
+                <img src="~/@Persona.ImagenUser" height="40px" width="40px" class="rounded-circle" />
+            </div>
             <div class="content-wrapper">
                 <div class="label-group fixed">
                     <p class="title">@Html.DisplayFor(ModelItem => Persona.Nombre)</p>

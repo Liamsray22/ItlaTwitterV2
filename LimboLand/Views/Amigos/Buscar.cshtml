@@ -54,6 +54,7 @@
     <table class="table" cellspacing="0">
         <thead>
             <tr>
+                <th>Imagen</th>
                 <th>Usuario</th>
                 <th>Nombre</th>
                 <th>Apellido</th>
@@ -62,17 +63,20 @@
         <tbody>
             @foreach (var Persona in Model)
             {
-                <tr>
-                    <td><h1>@Html.DisplayFor(ModelItem => Persona.Usuario)</h1></td>
-                    <td>@Html.DisplayFor(ModelItem => Persona.Nombre)</td>
-                    <td>@Html.DisplayFor(ModelItem => Persona.Apellido)</td>
-                    <td>
-                        <form asp-action="Agregar">
-                            <input style="display:none;" type="number" name="IdAmigo" value="@Persona.IdUsuarios" />
-                            <input type="submit" value="Agregar" class="btn btn-success" />
-                        </form>
-                    </td>
-                </tr>
+            <tr>
+                <td>
+                    <img src="~/@Persona.ImagenUser" height="40px" width="40px" class="rounded-circle" />
+                </td>
+                <td><h1>@Html.DisplayFor(ModelItem => Persona.Usuario)</h1></td>
+                <td>@Html.DisplayFor(ModelItem => Persona.Nombre)</td>
+                <td>@Html.DisplayFor(ModelItem => Persona.Apellido)</td>
+                <td>
+                    <form asp-action="Agregar">
+                        <input style="display:none;" type="number" name="IdAmigo" value="@Persona.IdUsuarios" />
+                        <input type="submit" value="Agregar" class="btn btn-success" />
+                    </form>
+                </td>
+            </tr>
 
             }
         </tbody>

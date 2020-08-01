@@ -49,6 +49,17 @@ namespace Repository.Repository
             foreach (var p in listapubs)
             {
                 var pv = _mapper.Map<PublicacionesViewModel>(p);
+                var usupub = await _usuarioRepo.GetByIdAsync(id);
+                try
+                {
+                    var imguser = await _imagenesRepo.GetByIdAsync(usupub.IdImagen.Value);
+                    pv.ImagenUser = imguser.Ruta;
+                }
+                catch
+                {
+
+                }
+
                 if (p.IdImagen != null)
                 {
                     var img = await _imagenesRepo.GetByIdAsync(p.IdImagen.Value);

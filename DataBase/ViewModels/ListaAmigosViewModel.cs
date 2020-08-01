@@ -11,5 +11,7 @@ namespace DataBase.ViewModels
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public string Usuario { get; set; }
+        public string ImagenUser { get; set; }
+
     }
 }

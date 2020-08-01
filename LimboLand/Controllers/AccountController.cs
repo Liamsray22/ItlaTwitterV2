@@ -33,43 +33,17 @@ namespace LimboLand.Controllers
             if (ModelState.IsValid)
             {
                 var log = await _usuarioRepo.Login(loginViewModel);
-                if (log) {
+                if (log ==2) {
                     return RedirectToAction("Index","HomePage");
                 }
-                else
+                else if(log == 3)
                 {
                     ModelState.AddModelError("", "Usuario o clave incorrectos");
 
+                }else if (log == 4)
+                {
+                    return RedirectToAction("Confirmacion");
                 }
-
-                //var User = _mapper.Map<Usuarios>(loginViewModel);
-                //var user = await _context.Usuarios.FirstOrDefaultAsync(x => x.Usuario == User.Usuario &&
-                //x.Clave == User.Clave);
-
-                //if (user != null)
-                //{
-                //    if (user.Activo != 0)
-                //    {
-                //        HttpContext.Session.SetString("SessionUser", JsonConvert.SerializeObject(user));
-
-
-                //        return RedirectToAction("Home", "Social", user);
-                //    }
-                //    else
-                //    {
-                //        Random r = new Random();
-                //        int codigo = r.Next(1000, 9999);
-                //        var mensaje = new Message(new string[] { user.Correo }, "Bienvenido a Limbo " + user.Nombre + " " + user.Apellido + "", "Confirme su cuenta mediante este codigo " + codigo);
-                //        await _message.SendMailAsync(mensaje);
-                //        HttpContext.Session.SetString("codigo", codigo.ToString());
-                //        HttpContext.Session.SetString("id", user.IdUsuarios.ToString());
-
-
-
-                //        return RedirectToAction("Confirmacion", "Home");
-                //    }
-                //}
-
             }
 
             return View(loginViewModel);
@@ -98,7 +72,7 @@ namespace LimboLand.Controllers
             {
                 var register = await _usuarioRepo.CreateUserAsync(registroViewModel);
                 if (register) {
-                    return RedirectToAction("Index", "HomePage");
+                    return RedirectToAction("Confirmacion");
                 }
                 else
                 {
@@ -132,12 +106,52 @@ namespace LimboLand.Controllers
         #region ActivarUsuario
         public async Task<IActionResult> ActivarUsuario(int? id)
         {
+            if(id == null)
+            {
+                return RedirectToAction("Index");
+
+            }
             await _usuarioRepo.ActivarUsuario(id.Value);
-            return RedirectToAction("Index");
+            return RedirectToAction("ConfirmacionS");
         }
         #endregion
 
         //End Activar Usuario**********************************************
+
+        //Recuperar Clave**********************************************
+
+        #region RecuperarPass
+
+        public async Task<IActionResult> RecuperarPass(string User)
+        {
+            var rec = await _usuarioRepo.RecuperarPass(User);
+            if (rec)
+            {
+                return RedirectToAction("Confirmacioncl");
+
+            }
+            else
+            {
+                return RedirectToAction("Index");
+
+            }
+        }
+        #endregion
+        //End Recuperar Clave**********************************************
+
+        public IActionResult Confirmacioncl()
+        {
+            return View();
+        }
+
+        public IActionResult Confirmacion()
+        {
+            return View();
+        }
+        public IActionResult ConfirmacionS()
+        {
+            return View();
+        }
 
     }
 }

@@ -21,20 +21,19 @@ namespace Repository.Repository
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UsuarioRepo _usuarioRepo;
         private readonly IMapper _mapper;
-        private readonly IHostingEnvironment Hotin;
+        private readonly ImagenesRepo _imagenesRepo;
 
 
         public ComentariosRepo(LIMBODBContext context, UserManager<IdentityUser> userManager,
                             SignInManager<IdentityUser> signInManager, IMapper mapper, 
-                            IHostingEnvironment Hotin, UsuarioRepo usuarioRepo) : base(context)
+                            UsuarioRepo usuarioRepo, ImagenesRepo imagenesRepo) : base(context)
         {
             _context = context;
             _userManager = userManager;
             _signInManager = signInManager;
             _mapper = mapper;
-            this.Hotin = Hotin;
             _usuarioRepo = usuarioRepo;
-            //TarjetadeUsuario = new TarjetadeUsuario(context);
+            _imagenesRepo = imagenesRepo;
         }
 
         public async Task<List<ComentariosViewModel>> TraerComments(int id)
@@ -44,7 +43,18 @@ namespace Repository.Repository
             foreach (var com in comentarios)
             {
                 var coment = _mapper.Map<ComentariosViewModel>(com);
-                coment.Usuario = await _usuarioRepo.GetNombreUsuarioById(coment.IdUsuario);
+                var usucoment = await _usuarioRepo.GetByIdAsync(coment.IdUsuario.Value);
+                coment.Usuario = usucoment.Usuario;
+                try
+                {
+                    var imguser = await _imagenesRepo.GetByIdAsync(usucoment.IdImagen.Value);
+                    coment.ImagenUser = imguser.Ruta;
+                }
+                catch
+                {
+
+                }
+
                 var replysIds = _context.Comentarios2.Where(c => c.IdComentarioPadre == coment.IdComentario).
                     Select(s=>s.IdComentarioHijo).ToList();
                 List<ComentariosViewModel> comen2 = new List<ComentariosViewModel>();
@@ -52,7 +62,17 @@ namespace Repository.Repository
                 {
                     var Comentariohijo = await GetByIdAsync(ide);
                     var comentarito = _mapper.Map<ComentariosViewModel>(Comentariohijo);
-                    comentarito.Usuario = await _usuarioRepo.GetNombreUsuarioById(Comentariohijo.IdUsuario);
+                    var usucomentarito = await _usuarioRepo.GetByIdAsync(comentarito.IdUsuario.Value);
+                    comentarito.Usuario = usucomentarito.Usuario;
+                    try
+                    {
+                        var imgusercomentarito = await _imagenesRepo.GetByIdAsync(usucomentarito.IdImagen.Value);
+                        comentarito.ImagenUser = imgusercomentarito.Ruta;
+                    }
+                    catch
+                    {
+
+                    }
                     comen2.Add(comentarito);
                 }
                 coment.comentarios2 = comen2;
