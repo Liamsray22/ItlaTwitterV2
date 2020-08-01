@@ -76,7 +76,7 @@ namespace LimboLand.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Registro");
                 }
             }
 

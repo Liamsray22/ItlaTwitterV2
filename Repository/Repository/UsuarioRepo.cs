@@ -59,9 +59,9 @@ namespace Repository.Repository
                         img.Nombre = FileName;
                         img.Ruta = "images\\fotoPerfil\\" + FileName + "";
                         await _context.Imagenes.AddAsync(img);
-                        _context.SaveChanges();
+                        await _context.SaveChangesAsync();
 
-                        var image = await _context.Imagenes.FirstOrDefaultAsync(d => d.Nombre.Contains(rvm.Usuario));
+                        var image = await _context.Imagenes.FirstOrDefaultAsync(d => d.Nombre == FileName);
                         rvm.Activo = 0;
                         var newUsuario = _mapper.Map<Usuarios>(rvm);
                         newUsuario.IdImagen = image.IdImagen;
