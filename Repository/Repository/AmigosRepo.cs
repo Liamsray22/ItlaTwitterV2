@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
-using DataBase;
 using DataBase.Models;
 using DataBase.ViewModels;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -23,7 +18,6 @@ namespace Repository.Repository
         private readonly ImagenesRepo _imagenesRepo;
         private readonly IMapper _mapper;
 
-
         public AmigosRepo(LIMBODBContext context, UserManager<IdentityUser> userManager,
                             SignInManager<IdentityUser> signInManager, IMapper mapper,
                             UsuarioRepo usuarioRepo, ImagenesRepo imagenesRepo) : base(context)
@@ -37,7 +31,7 @@ namespace Repository.Repository
         }
 
         
-
+        //Traer lista de amigos
         public async Task<List<ListaAmigosViewModel>> TraerListaAmigos (int id)
         {
             var listIdsAmigos = _context.Amigos.Where(l => l.IdUsuario == id).Select(s => s.IdAmigo).ToList();
@@ -60,6 +54,8 @@ namespace Repository.Repository
             return listaAmigos;
         }
 
+
+        //Buscar Personas 
         public async Task<List<ListaAmigosViewModel>> BuscarPersonas(string user)
         {
             var personas = await _context.Usuarios.Where(w=>w.Usuario.Contains(user)).ToListAsync();
@@ -82,6 +78,8 @@ namespace Repository.Repository
             return listaAmigos;
         }
 
+
+        //Agregar Amigos
         public async Task AgregarAmigos(int IdUsuario, int IdAmigo)
         {
             try
@@ -101,6 +99,7 @@ namespace Repository.Repository
 
         }
 
+        //Borrar Amigos
         public async Task BorrarAmigos(int IdUsuario, int IdAmigo)
         {
             try

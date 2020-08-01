@@ -1,10 +1,6 @@
 ﻿using MimeKit;
 using System;
-using System.Collections.Generic;
-using System.Net.Mail;
-using System.Text;
 using System.Threading.Tasks;
-using MailKit;
 using SmtpClient = MailKit.Net.Smtp.SmtpClient;
 
 

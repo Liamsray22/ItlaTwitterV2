@@ -124,13 +124,9 @@ namespace Repository.Repository
             if (pub.FotoPub != null)
             {
                 try
-                {
-                    string minipub = publicacion.Publicacion.Substring(0, publicacion.Publicacion.Length);
-
-                    Random r = new Random();
-                    int codigo = r.Next(10000000, 99999999);
+                {                    
                     string Subir = Path.Combine(Hotin.WebRootPath, "images\\fotoPub");
-                    FileName = minipub+ codigo + ".png";
+                    FileName = Guid.NewGuid().ToString() + "_" + pub.FotoPub.FileName;
                     string FilePath = Path.Combine(Subir, FileName);
 
                     pub.FotoPub.CopyTo(new FileStream(FilePath, FileMode.Create));
@@ -139,7 +135,7 @@ namespace Repository.Repository
                     img.Ruta = "images\\fotoPub\\" + FileName + "";
                     await _imagenesRepo.AddAsync(img);
 
-                    var image = await _context.Imagenes.FirstOrDefaultAsync(d => d.Nombre.Contains(minipub + codigo));
+                    var image = await _context.Imagenes.FirstOrDefaultAsync(d => d.Nombre.Contains(FileName));
 
                     publicacion.IdImagen = image.IdImagen;
                    
@@ -164,13 +160,9 @@ namespace Repository.Repository
             if (pub.FotoPub != null)
             {
                 try
-                {
-                    string minipub = pub.Publicacion.Substring(0, 5);
-
-                    Random r = new Random();
-                    int codigo = r.Next(10000000, 99999999);
+                {                    
                     string Subir = Path.Combine(Hotin.WebRootPath, "images\\fotoPub");
-                    FileName = minipub + codigo + ".png";
+                    FileName = Guid.NewGuid().ToString() + "_" + pub.FotoPub.FileName;
                     string FilePath = Path.Combine(Subir, FileName);
 
                     pub.FotoPub.CopyTo(new FileStream(FilePath, FileMode.Create));
@@ -190,7 +182,7 @@ namespace Repository.Repository
                         img.Ruta = "images\\fotoPub\\" + FileName + "";
                         await _context.Imagenes.AddAsync(img);
 
-                        var image = await _context.Imagenes.FirstOrDefaultAsync(d => d.Nombre.Contains(minipub + codigo));
+                        var image = await _context.Imagenes.FirstOrDefaultAsync(d => d.Nombre.Contains(FileName));
 
                         publi.IdImagen = image.IdImagen;
 

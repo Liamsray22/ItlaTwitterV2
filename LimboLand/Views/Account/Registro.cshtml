@@ -19,6 +19,56 @@
 
             <form asp-action="Registro" enctype="multipart/form-data">
                 <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+
+                <div class="preview text-center">
+                    <img class="preview-img" id="file-preview" src="http://simpleicon.com/wp-content/uploads/account.png" alt="Preview Image" width="200" height="200" />
+                    <div class="browse-button">
+                        <i class="fa fa-pencil-alt"></i>
+                        <input class="browse-input" asp-for="Foto" type="file"
+                         id="file-upload" accept="image/*" />
+                    </div>
+                    <div>
+                        <label class="file-label"> Seleccionar foto de Perfil</label><br>
+                        @Html.ValidationMessageFor(d => d.Foto, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                @*@Section Scripts{*@                
+                <script>
+                    function readFile(input) {
+                        if (input.files && input.files[0]) {
+                            var reader = new FileReader();
+                            reader.onload = function (e) {
+                                var filePreview = document.getElementById('file-preview');
+                                
+                                filePreview.src = e.target.result;
+                            }
+
+                            reader.readAsDataURL(input.files[0]);
+                        } else {
+                            var reader = new FileReader();
+                            reader.onload = function (e) {
+                                var filePreview = document.getElementById('file-preview');                                
+                                filePreview.src = "~\\images\\userDefault.png";
+                            }
+                            try {
+                                reader.readAsDataURL(input.files[0]);
+                            } catch{
+                                var filePreview = document.getElementById('file-preview');
+                                var ruta = window.location.toString();
+                                var rutabien = ruta.substring(0, 23);
+
+                                filePreview.src = rutabien+"images/userDefault.png";
+                            }
+                        }
+                    }
+
+                    var fileUpload = document.getElementById('file-upload');
+                    fileUpload.onchange = function (e) {
+                        readFile(e.srcElement);
+                    }
+                </script>
+
+                @*}*@
                 <div class="form-group">
                     <input asp-for="Nombre" placeholder="Nombre" />
                     <div>
@@ -71,16 +121,6 @@
                     </div>
 
                 </div>
-
-                <div class="form-group">
-                    <input asp-for="Foto" placeholder="Foto de Perfil" accept="image/*"/>
-                    <div>
-                        @Html.ValidationMessageFor(d => d.Foto, "", new { @class = "text-danger" })
-                    </div>
-
-                </div>
-
-
                 <div class="form-group">
                     <input type="submit" value="Registrar" class="btn btn-success" />
                 </div>
@@ -92,3 +132,47 @@
     </div>
 
 </body>
+<style>
+    .preview {
+        padding: 10px;
+        position: relative;
+    }
+
+        .preview i {
+            color: white;
+            font-size: 35px;
+            transform: translate(50px,130px);
+        }
+
+    .preview-img {
+        border-radius: 100%;
+        box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.7);
+    }
+
+    .browse-button {
+        width: 200px;
+        height: 200px;
+        border-radius: 100%;
+        position: absolute;
+        top: 10px;
+        left: 132px;
+        background: linear-gradient(180deg, transparent, black);
+        opacity: 0;
+        transition: 0.3s ease;
+    }
+
+        .browse-button:hover {
+            opacity: 1;
+        }
+
+    .browse-input {
+        width: 200px;
+        height: 200px;
+        border-radius: 100%;
+        transform: translate(-1px,-26px);
+        opacity: 0;
+    }
+
+
+
+</style>

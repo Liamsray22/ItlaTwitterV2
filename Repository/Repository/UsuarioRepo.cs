@@ -51,21 +51,23 @@ namespace Repository.Repository
                     try
                     {
                         string Subir = Path.Combine(Hotin.WebRootPath, "images\\fotoPerfil");
-                        FileName = rvm.Usuario + ".png";
+                        FileName = Guid.NewGuid().ToString()+"_"+rvm.Foto.FileName;
                         string FilePath = Path.Combine(Subir, FileName);
-
                         rvm.Foto.CopyTo(new FileStream(FilePath, FileMode.Create));
+
                         Imagenes img = new Imagenes();
                         img.Nombre = FileName;
                         img.Ruta = "images\\fotoPerfil\\" + FileName + "";
                         await _context.Imagenes.AddAsync(img);
                         await _context.SaveChangesAsync();
 
-                        var image = await _context.Imagenes.FirstOrDefaultAsync(d => d.Nombre.Contains(rvm.Usuario));
+                        var image = await _context.Imagenes.FirstOrDefaultAsync(d => d.Nombre.Contains(FileName));
                         rvm.Activo = 0;
                         var newUsuario = _mapper.Map<Usuarios>(rvm);
                         newUsuario.IdImagen = image.IdImagen;
                         await AddAsync(newUsuario);
+
+
                         string opcion1 = "https://localhost:5001/Account/ActivarUsuario/"+ newUsuario.IdUsuarios+ "";
                         string opcion2 = "https://localhost:5000/Account/ActivarUsuario/" + newUsuario.IdUsuarios + "";
                         string opcion3 = "http://localhost:49371/Account/ActivarUsuario/" + newUsuario.IdUsuarios + "";
