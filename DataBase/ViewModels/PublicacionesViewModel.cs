@@ -20,8 +20,6 @@ namespace DataBase.ViewModels
         public IFormFile FotoPub { get; set; }
 
         public string Usuario { get; set; }
-        //public int CantidadAmigos { get; set; }
-
 
         public IEnumerable<PublicacionesViewModel> publicaciones;
 

@@ -47,7 +47,7 @@ namespace DataBase.ViewModels
         public string Telefono { get; set; }
 
         public int? Activo { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Debe Insertar una imagen")]
         public IFormFile Foto { get; set; }
 
 

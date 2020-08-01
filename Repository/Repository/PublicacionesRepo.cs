@@ -88,6 +88,16 @@ namespace Repository.Repository
                 var img = await _context.Imagenes.FirstOrDefaultAsync(k => k.IdImagen == pub.IdImagen);
                 pv.Imagen = img.Ruta;
             }
+            try
+            {
+                var user = await _usuarioRepo.GetByIdAsync(pv.IdUsuario.Value);
+                var imguser = await _imagenesRepo.GetByIdAsync(user.IdImagen.Value);
+                pv.ImagenUser = imguser.Ruta;
+            }
+            catch
+            {
+
+            }
             pv.Usuario = await _usuarioRepo.GetNombreUsuarioById(pub.IdUsuario);
 
             return pv;
@@ -115,7 +125,7 @@ namespace Repository.Repository
             {
                 try
                 {
-                    string minipub = publicacion.Publicacion.Substring(0, 5);
+                    string minipub = publicacion.Publicacion.Substring(0, publicacion.Publicacion.Length);
 
                     Random r = new Random();
                     int codigo = r.Next(10000000, 99999999);

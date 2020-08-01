@@ -61,7 +61,7 @@ namespace Repository.Repository
                         await _context.Imagenes.AddAsync(img);
                         await _context.SaveChangesAsync();
 
-                        var image = await _context.Imagenes.FirstOrDefaultAsync(d => d.Nombre == FileName);
+                        var image = await _context.Imagenes.FirstOrDefaultAsync(d => d.Nombre.Contains(rvm.Usuario));
                         rvm.Activo = 0;
                         var newUsuario = _mapper.Map<Usuarios>(rvm);
                         newUsuario.IdImagen = image.IdImagen;

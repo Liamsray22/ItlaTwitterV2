@@ -68,7 +68,7 @@ using DataBase;
             WriteLiteral("        <h1>No tienes Amigos</h1>\r\n        ");
             EndContext();
             BeginContext(171, 57, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "434c6c90c8164dc3a7de0fedfee55c05", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "c81723da159445b9b0d8d83be442799d", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -100,7 +100,7 @@ using DataBase;
             WriteLiteral("        <div class=\"border-card\">\r\n            <div class=\"card-type-icon with-border\">\r\n                ");
             EndContext();
             BeginContext(410, 85, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "cfc9798f9e7f435882b1a0704b04baef", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "668d0a58e19549f5a1c9eb24bb478978", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -158,7 +158,7 @@ AddHtmlAttributeValue("", 422, Persona.ImagenUser, 422, 19, false);
             WriteLiteral("</p>\r\n                    <p class=\"caption\">Usuario</p>\r\n                </div>\r\n\r\n            </div>\r\n            ");
             EndContext();
             BeginContext(1314, 118, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dacbb4fba6d84cd5bcf8696980020ef9", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "aae1384ee3af406bbc529d1080ec0d1f", async() => {
                 BeginContext(1380, 48, true);
                 WriteLiteral("<button class=\"btn btn-danger\">Eliminar</button>");
                 EndContext();
