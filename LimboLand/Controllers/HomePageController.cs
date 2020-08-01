@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using DataBase.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -25,12 +22,19 @@ namespace LimboLand.Controllers
             _comentariosRepo = comentariosRepo;
 
         }
+
+        //Id del Usuario Logueado
+        #region IdUser
         public async Task< int> IdUser()
         {
             var usu = await _usuarioRepo.GetUsuarioByName(User.Identity.Name);
             return usu.IdUsuarios;
         }
+        #endregion
 
+
+        //Index del Home Usuario donde se muestran sus publicaciones
+        #region HomePage
         public async Task<IActionResult> Index()
         {
 
@@ -49,7 +53,11 @@ namespace LimboLand.Controllers
             }
             return RedirectToAction("Index");
         }
+        #endregion
 
+
+        //Comentar Publicaciones
+        #region comentar
         [HttpPost]
         public async Task<IActionResult> Comentar(ComentariosViewModel cm)
         {
@@ -61,7 +69,11 @@ namespace LimboLand.Controllers
             }
             return RedirectToAction("Index");
         }
+        #endregion
 
+
+        //Responder Publicaciones
+        #region Responder
         [HttpPost]
         public async Task<IActionResult> Responder(RespuestaViewModel respuesta)
         {
@@ -73,7 +85,11 @@ namespace LimboLand.Controllers
             }
             return RedirectToAction("Index");
         }
+        #endregion
 
+
+        //Editar Publicaciones
+        #region EditarPub
         public async Task<IActionResult> EditarPub(int id)
         {
             var editar = await _publicacionesRepo.TraerPubById(id);
@@ -91,12 +107,17 @@ namespace LimboLand.Controllers
             return RedirectToAction("Index");
 
         }
+        #endregion
 
+
+        //Eliminar Publicaciones
+        #region EliminarPubs
         public async Task<IActionResult> EliminarPub(int id)
         {
             var editar = await _publicacionesRepo.EliminarPub(id);
             return RedirectToAction("Index");
         }
+        #endregion
 
     }
 }

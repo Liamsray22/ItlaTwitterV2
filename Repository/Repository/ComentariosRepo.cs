@@ -35,7 +35,7 @@ namespace Repository.Repository
             _usuarioRepo = usuarioRepo;
             _imagenesRepo = imagenesRepo;
         }
-
+        //Traer Comentarios
         public async Task<List<ComentariosViewModel>> TraerComments(int id)
         {
             var comentarios = await _context.Comentarios.Where(x=>x.IdPublicacion == id).ToListAsync();
@@ -82,12 +82,14 @@ namespace Repository.Repository
             
         }
 
+        //Crear Comentarios
         public async Task CrearComent(ComentariosViewModel cvm)
         {
             var comentario = _mapper.Map<Comentarios>(cvm);
             await AddAsync(comentario);
         }
 
+        //Crear Respuesta
         public async Task CrearRespuesta(RespuestaViewModel res)
         {
             var comentario = _mapper.Map<Comentarios>(res);

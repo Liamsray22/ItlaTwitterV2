@@ -16,7 +16,7 @@ namespace LimboLand.Controllers
 
      
 
-        //Login***********************************************
+        //Login
 
         #region Login
         public IActionResult Index()
@@ -27,6 +27,7 @@ namespace LimboLand.Controllers
             }
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> Index(LoginViewModel loginViewModel)
         {
@@ -39,25 +40,23 @@ namespace LimboLand.Controllers
                 else if(log == 3)
                 {
                     ModelState.AddModelError("", "Usuario o clave incorrectos");
-
                 }else if (log == 4)
                 {
                     return RedirectToAction("Confirmacion");
                 }
             }
-
             return View(loginViewModel);
         }
+
         public IActionResult Login()
         {
             return RedirectToAction("Index");
         }
         #endregion
 
-        //End Login**************************************************
 
 
-        //Registro***********************************************
+        //Registro
         #region registro
         public IActionResult Registro()
         {
@@ -67,7 +66,6 @@ namespace LimboLand.Controllers
 
         public async Task<IActionResult> Registro(RegistroViewModel registroViewModel)
         {
-
             if (ModelState.IsValid)
             {
                 var register = await _usuarioRepo.CreateUserAsync(registroViewModel);
@@ -79,18 +77,14 @@ namespace LimboLand.Controllers
                     return RedirectToAction("Registro");
                 }
             }
-
             return View(registroViewModel);
-
-
         }
         #endregion
 
-        //End Registro**************************************************
 
 
 
-        //Cerrar Sesion**********************************************
+        //Cerrar Sesion
         #region CerrarSesion
         public IActionResult CerrarSesion()
         {
@@ -99,10 +93,9 @@ namespace LimboLand.Controllers
         }
         #endregion
 
-        //End Cerrar Sesion**********************************************
 
 
-        //Activar Usuario**********************************************
+        //Activar Usuario
         #region ActivarUsuario
         public async Task<IActionResult> ActivarUsuario(int? id)
         {
@@ -116,9 +109,8 @@ namespace LimboLand.Controllers
         }
         #endregion
 
-        //End Activar Usuario**********************************************
 
-        //Recuperar Clave**********************************************
+        //Recuperar Clave
 
         #region RecuperarPass
 
@@ -137,8 +129,10 @@ namespace LimboLand.Controllers
             }
         }
         #endregion
-        //End Recuperar Clave**********************************************
 
+
+        //Confirmaciones
+        #region Confirmaciones
         public IActionResult Confirmacioncl()
         {
             return View();
@@ -152,6 +146,7 @@ namespace LimboLand.Controllers
         {
             return View();
         }
+#endregion
 
     }
 }

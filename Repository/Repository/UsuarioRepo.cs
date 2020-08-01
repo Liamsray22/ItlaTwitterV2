@@ -37,7 +37,7 @@ namespace Repository.Repository
             _message = message;
         }
        
-
+        //Crear Usuarios
         public async Task<bool> CreateUserAsync(RegistroViewModel rvm)
         {
 
@@ -66,8 +66,6 @@ namespace Repository.Repository
                         var newUsuario = _mapper.Map<Usuarios>(rvm);
                         newUsuario.IdImagen = image.IdImagen;
                         await AddAsync(newUsuario);
-
-
                         string opcion1 = "https://localhost:5001/Account/ActivarUsuario/"+ newUsuario.IdUsuarios+ "";
                         string opcion2 = "https://localhost:5000/Account/ActivarUsuario/" + newUsuario.IdUsuarios + "";
                         string opcion3 = "http://localhost:49371/Account/ActivarUsuario/" + newUsuario.IdUsuarios + "";
@@ -90,6 +88,7 @@ namespace Repository.Repository
             return false;
         }
 
+        //Loguearse
         public async Task<int> Login(LoginViewModel lvm)
         {
             var usu = await GetUsuarioByName(lvm.Usuario);
@@ -123,22 +122,26 @@ namespace Repository.Repository
             return 3;
         }
 
-
+        //Obtener Usuario por el UserName
         public async Task<Usuarios> GetUsuarioByName(string user)
         {
             return await _context.Usuarios.FirstOrDefaultAsync(x=>x.Usuario == user);
         }
+
+        //Obtener Nombre Usuario por el Id
         public async Task<string> GetNombreUsuarioById(int? id)
         {
             var user = await _context.Usuarios.FirstOrDefaultAsync(x => x.IdUsuarios == id);
             return user.Usuario;
         }
 
+        //Cerrar Sesion
         public void Cerrar()
         {
             _signInManager.SignOutAsync();
         }
 
+        //Activar Usuario
         public async Task ActivarUsuario(int id)
         {
             var user = await GetByIdAsync(id);
@@ -153,6 +156,7 @@ namespace Repository.Repository
             }
         }
 
+        //Recuperar Clave
         public async Task<bool> RecuperarPass(string username)
         {
             var user = await _userManager.FindByNameAsync(username);

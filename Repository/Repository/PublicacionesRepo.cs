@@ -40,7 +40,7 @@ namespace Repository.Repository
             _comentariosRepo = comentariosRepo;
             _imagenesRepo = imagenesRepo;
         }
-
+        //Traer Publicaciones
         public async Task<PublicacionesViewModel> TraerPubs(int id)
         {
             PublicacionesViewModel pvm = new PublicacionesViewModel();
@@ -79,6 +79,7 @@ namespace Repository.Repository
             
         }
 
+        //Traer Publicaciones por el Id del Usuario
         public async Task<PublicacionesViewModel> TraerPubById(int id)
         {
             var pub = await GetByIdAsync(id);
@@ -103,6 +104,7 @@ namespace Repository.Repository
             return pv;
         }
 
+        //Traer Publicaciones de mis amigos
         public async Task<List<PublicacionesViewModel>> TraerPubsAmigos(int id)
         {
             var listIdsFriends = _context.Amigos.Where(a => a.IdUsuario == id).Select(s=>s.IdAmigo).ToList();
@@ -112,6 +114,8 @@ namespace Repository.Repository
             }
             return pvmfriends;
         }
+
+        //Crear Publicaciones
         public async Task<bool> CrearPubs(PublicacionesViewModel pub)
         {
 
@@ -145,12 +149,11 @@ namespace Repository.Repository
                     return false;
                 }
             }
-
             await AddAsync(publicacion);
-            //publicacion.IdImagen = pub
             return false;
         }
 
+        //Editar Publicaciones
         public async Task<bool> EditarPubs(PublicacionesViewModel pub)
         {
             var publi = await GetByIdAsync(pub.IdPublicacion);
@@ -183,10 +186,7 @@ namespace Repository.Repository
                         await _context.Imagenes.AddAsync(img);
 
                         var image = await _context.Imagenes.FirstOrDefaultAsync(d => d.Nombre.Contains(FileName));
-
                         publi.IdImagen = image.IdImagen;
-
-
                     }
 
                     return true;
@@ -204,7 +204,7 @@ namespace Repository.Repository
             return true;
         }
 
-
+        //Eliminar Publicaciones
         public async Task<bool> EliminarPub(int id)
         {
             try
@@ -215,15 +215,12 @@ namespace Repository.Repository
                     var img = await _imagenesRepo.GetByIdAsync(p.IdImagen.Value);
                     _imagenesRepo.Borrar(Path.Combine(Hotin.WebRootPath, img.Ruta));
                     await _imagenesRepo.DeleteEntity(img);
-
-
                 }
                 await DeleteEntity(p);
             }
             catch
             {
                 return false;
-
             }
             return true;
         }

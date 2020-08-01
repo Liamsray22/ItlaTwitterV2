@@ -34,6 +34,7 @@ namespace Repository.Repository
             _usuarioRepo = usuarioRepo;
         }
 
+        //Borrar Imagenes de la carpeta
         public void Borrar(string path)
         {
             File.SetAttributes(path, FileAttributes.Normal);
